@@ -65,7 +65,21 @@ public class Node implements Comparable<Node>{
 
 	
 	public int getCusto() {
-		return custo;
+		return custo+calculaCusto();
+	}
+	/**
+	 * Obtendo o custo dos pais
+	 * @return
+	 */
+	private int calculaCusto() {
+		Node no = this;
+		int total=0;
+		
+		while (no.getPai() != null) {
+			no = no.getPai();
+			total+=no.getCusto();
+		}
+		return total;
 	}
 
 	public void setCusto(int custo) {
@@ -74,11 +88,13 @@ public class Node implements Comparable<Node>{
 	
 	
 
-	public Node getPrevious() {
+	
+
+	public Node getPai() {
 		return pai;
 	}
 
-	public void setPrevious(Node pai) {
+	public void setPai(Node pai) {
 		this.pai = pai;
 	}
 
@@ -97,84 +113,6 @@ public class Node implements Comparable<Node>{
 		this.explorado = explorado;
 	}
 
-	/**
-     * calculates - but does not set - g costs.
-     * <p>
-     * It will assume <code>BASICMOVEMENTCOST</code> as the cost from
-     * <code>paiAbstractNode</code> to itself if the movement is not diagonally,
-     * otherwise it will assume <code>DIAGONALMOVEMENTCOST</code>.
-     * Weather or not it is diagonally is set in the Map class method which
-     * finds the adjacent AbstractNodes.
-     *
-     * @param paiAbstractNode
-     * @return gCosts
-     */
-    public int calculategCosts(Node paiAbstractNode) {
-        
-            return (paiAbstractNode.getgCusto()
-                    + BASICMOVEMENTCOST );
-        
-    }
-	/**
-     * returns <code>gCosts</code> + <code>hCosts</code>.
-     * <p>
-     *
-     *
-     * @return the fCosts
-     */
-    public int getfCosts() {
-        return gCusto + hCusto;
-    }
-	
-	
-	 public void sethCosts(Node endNode) {
-         this.sethCusto((absolute(this.getPosicaoX() - endNode.getPosicaoX())
-                 + absolute(this.getPosicaoY() - endNode.getPosicaoY()))
-                 * BASICMOVEMENTCOST);
-     }
-	 
-	 /**
-	     * sets gCosts to <code>gCosts</code> plus <code>movementPanelty</code>
-	     * for this AbstractNode.
-	     *
-	     * @param gCosts the gCosts to set
-	     */
-	    private void setgCosts(int gCosts) {
-	        this.gCusto = gCosts ;
-	    }
-	 /**
-	     * sets gCosts to <code>gCosts</code> plus <code>movementPanelty</code>
-	     * for this AbstractNode given the pai AbstractNode as well as the basic cost
-	     * from it to this AbstractNode.
-	     *
-	     * @param paiAbstractNode
-	     * @param basicCost
-	     */
-	    public void setgCosts(Node paiAbstractNode, int basicCost) {
-	        setgCosts(paiAbstractNode.getgCusto() + basicCost);
-	    }
-
-	    /**
-	     * sets gCosts to <code>gCosts</code> plus <code>movementPanelty</code>
-	     * for this AbstractNode given the pai AbstractNode.
-	     * <p>
-	     * It will assume <code>BASICMOVEMENTCOST</code> as the cost from
-	     * <code>paiAbstractNode</code> to itself if the movement is not diagonally,
-	     * otherwise it will assume <code>DIAGONALMOVEMENTCOST</code>.
-	     * Weather or not it is diagonally is set in the Map class method which
-	     * finds the adjacent AbstractNodes.
-	     *
-	     * @param paiAbstractNode
-	     */
-	    public void setgCosts(Node paiAbstractNode) {
-	      
-	            setgCosts(paiAbstractNode, BASICMOVEMENTCOST);
-	       
-	    }
-
-     private int absolute(int a) {
-         return a > 0 ? a : -a;
-     }
      
      
 
@@ -203,6 +141,20 @@ public class Node implements Comparable<Node>{
 	public void setInicioObjetivo(boolean inicioObjetivo) {
 		this.inicioObjetivo = inicioObjetivo;
 	}
+		
+	
+	
+	@Override
+	public int compareTo(Node node) {
+		if (this.getCusto()< node.getCusto()) {
+            return -1;
+        }
+        if (this.getCusto()> node.getCusto()) {
+            return 1;
+        }
+        return 0;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -229,15 +181,6 @@ public class Node implements Comparable<Node>{
 		return true;
 	}
 
-	@Override
-	public int compareTo(Node node) {
-		if (this.custo< node.custo) {
-            return -1;
-        }
-        if (this.custo> node.custo) {
-            return 1;
-        }
-        return 0;
-	}
+	
 	
 }

@@ -18,13 +18,15 @@ import java.util.Queue;
 import br.com.estudo.busca.Grafo;
 import br.com.estudo.busca.Node;
 import br.com.estudo.busca.map.MapBaseApp;
+
 /**
  * BrFS - Breadth-first search
+ * 
  * @author Helber
  *
  */
 public class BuscaEmCustoUniforme extends MapBaseApp {
-	
+
 	private Node objetivo;
 
 	boolean finalizar = false;
@@ -37,7 +39,6 @@ public class BuscaEmCustoUniforme extends MapBaseApp {
 		this.objetivo = objetivo;
 	}
 
-
 	/**
 	 * Busca em largura
 	 * 
@@ -46,49 +47,75 @@ public class BuscaEmCustoUniforme extends MapBaseApp {
 	public void bfs(Node node) {
 		node.setVisitado(true);
 		queue.add(node);
-		
+
 		while (!queue.isEmpty()) {
-			
-			
+
 			nosOrdenados.clear();
-			
+
 			for (Node n : queue) {
 				nosOrdenados.add(n);
 			}
-			
-			
+
 			Collections.sort(nosOrdenados);
-			
+
 			queue.clear();
 			for (Node n : nosOrdenados) {
 				queue.add(n);
 			}
 			Node element = queue.remove();
-			
+
 			// verifica objetivo
-			if(verificaObjetivo(element)){
+			if (verificaObjetivo(element)) {
 				System.out.println("Elemento objetivo : " + element);
-				explorado.add(element);
-				getCanvas().setExplorado(explorado);
-				getCanvas().repaint();
-				
-				return;
+				solucao(element);
+
+				// return;
 			}
-			
+
 			explorado.add(element);
-			
+
 			Iterable<Node> adj = grafo.adj(element);
-			
-			
+
 			for (Node n : adj) {
+				if(!n.isInicioObjetivo() && !n.getPai().equals(element)){
+					n.setPai(element);
+				}
 				if (n != null && !explorado.contains(n) && !queue.contains(n)) {
+					
 					n.setVisitado(true);
 					queue.add(n);
+				} else {
+					
+//					if (explorado.indexOf(n) != -1) {
+//						if (explorado.get(explorado.indexOf(n)).getCusto() < n.getCusto()) {
+//							explorado.set(explorado.indexOf(n), n);
+//						}
+//					}
 				}
 
 			}
 
 		}
+	}
+
+	private void solucao(Node element) {
+		List<Node> solucao = new ArrayList<Node>();
+
+		// Deveria ser comportamento da busca?
+		String retorno = "";
+		Node no = element;
+		solucao.add(no);
+		retorno += no.getNome();
+		while (no.getPai() != null) {
+			no = no.getPai();
+			solucao.add(no);
+			retorno = no.getNome() + " " + retorno;
+		}
+		System.out.println("REsultado " + retorno);
+
+		getCanvas().setExplorado(solucao);
+		getCanvas().repaint();
+
 	}
 
 	private boolean verificaObjetivo(Node element) {
@@ -105,33 +132,32 @@ public class BuscaEmCustoUniforme extends MapBaseApp {
 	public void setG(Grafo g) {
 		this.grafo = grafo;
 	}
-	
-	
 
 	public List<Node> getExplorado() {
 		return explorado;
 	}
 
-
-
 	public void setExplorado(List<Node> explorado) {
 		this.explorado = explorado;
 	}
 
-
-
 	public static void main(String[] args) {
-		Node objetivo =new Node(BUCHAREST, 1, 2, 0);
+		Node objetivo = new Node(BUCHAREST, 1, 2, 0);
 		BuscaEmCustoUniforme largura = new BuscaEmCustoUniforme(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node(ARAD, 50, 250, 140);;
-		
+		Node node4 = new Node(ARAD, 50, 250, 140);
+		;
+
 		largura.bfs(node4);
-		//System.out.println(largura.getG().toString());
+		// System.out.println(largura.getG().toString());
 
-		System.out.println(largura.getExplorado());
-
+		// System.out.println(largura.getExplorado());
+		for (Node n : largura.getExplorado()) {
+			if (n.getPai() != null) {
+				System.out.println(n.getNome() + " pai " + n.getPai().getNome());
+			}
+		}
 	}
 
 }

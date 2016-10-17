@@ -52,9 +52,7 @@ public class BuscaEmLargura extends MapBaseApp {
 			// verifica objetivo
 			if(verificaObjetivo(element)){
 				System.out.println("Elemento objetivo : " + element);
-				explorado.add(element);
-				getCanvas().setExplorado(explorado);
-				getCanvas().repaint();
+				solucao(element);
 				finalizar=true;
 				return;
 			}
@@ -72,6 +70,30 @@ public class BuscaEmLargura extends MapBaseApp {
 			}
 
 		}
+	}
+	
+	private void solucao(Node element) {
+		List<Node> solucao = new ArrayList<Node>();
+		
+		
+		
+		// Deveria ser comportamento da busca?
+				String retorno = "";
+				Node no = element;
+				solucao.add(no);
+				retorno += no.getNome();
+				while (no.getPai() != null) {
+					no = no.getPai();
+					solucao.add(no);
+					retorno = no.getNome() + " " + retorno;
+				}
+				 System.out.println("REsultado "+retorno);
+		
+		
+		getCanvas().setExplorado(solucao);
+		getCanvas().repaint();
+	
+		
 	}
 
 	private boolean verificaObjetivo(Node element) {

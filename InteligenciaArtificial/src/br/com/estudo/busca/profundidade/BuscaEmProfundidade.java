@@ -45,10 +45,7 @@ public class BuscaEmProfundidade extends MapBaseApp {
 	public void dfs(Node node) {
 		if (verificaObjetivo(node)) {
 			System.out.println("Elemento objetivo : " + node);
-			explorado.add(node);
-			getCanvas().setExplorado(explorado);
-			getCanvas().repaint();
-			finalizar = true;
+			solucao(node);
 			return;
 		} else {
 			node.setVisitado(true);
@@ -65,6 +62,30 @@ public class BuscaEmProfundidade extends MapBaseApp {
 			}
 		}
 
+	}
+	
+	private void solucao(Node element) {
+		List<Node> solucao = new ArrayList<Node>();
+		
+		
+		
+		// Deveria ser comportamento da busca?
+				String retorno = "";
+				Node no = element;
+				solucao.add(no);
+				retorno += no.getNome();
+				while (no.getPai() != null) {
+					no = no.getPai();
+					solucao.add(no);
+					retorno = no.getNome() + " " + retorno;
+				}
+				 System.out.println("REsultado "+retorno);
+		
+		
+		getCanvas().setExplorado(solucao);
+		getCanvas().repaint();
+	
+		
 	}
 
 	private boolean verificaObjetivo(Node element) {

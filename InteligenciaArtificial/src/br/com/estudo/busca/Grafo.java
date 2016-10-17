@@ -19,13 +19,17 @@ public class Grafo {
 		this.numVertices = numVertices;
 		this.numArestas = 0;
 		this.adj = new HashMap<>();
-
 	}
 
 	public void add(Node u, Node v) {
 		ArrayDeque<Node> d = new ArrayDeque<Node>();
+
 		d.add(v);
+		if (!u.isInicioObjetivo()) {
+			u.setPai(v);
+		}
 		adj.put(u, d);
+
 	}
 
 	public void adicionaAresta(Node u, Node v) {
@@ -159,8 +163,6 @@ public class Grafo {
 		this.adj = adj;
 	}
 
-	
-	
 	public Node getRoot() {
 		return root;
 	}
@@ -177,10 +179,10 @@ public class Grafo {
 		for (Object o : adj.keySet().toArray()) {
 			Node n = (Node) o;
 
-			s.append(n.getNome()).append(" =>"+n.getCusto());
+			s.append(n.getNome()).append(" =>" + n.getCusto());
 
 			for (Node u : adj(n)) {
-				s.append(u.getNome()+" Custo "+u.getCusto()).append(",");
+				s.append(u.getNome() + " Custo " + u.getCusto()).append(",");
 			}
 			s.append(SL);
 		}
