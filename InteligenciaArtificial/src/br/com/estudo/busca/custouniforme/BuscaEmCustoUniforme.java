@@ -78,7 +78,7 @@ public class BuscaEmCustoUniforme extends MapBaseApp {
 
 			for (Node n : adj) {
 				if(!n.isInicioObjetivo() && !n.getPai().equals(element)){
-					n.setPai(element);
+					//n.setPai(element);
 				}
 				if (n != null && !explorado.contains(n) && !queue.contains(n)) {
 					

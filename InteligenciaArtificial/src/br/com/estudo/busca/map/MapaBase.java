@@ -49,20 +49,30 @@ public class MapaBase extends JFrame {
 		grafo.adicionaAresta(arad, zerind);
 		grafo.adicionaAresta(arad, timisoara);
 		grafo.adicionaAresta(arad, sibiu);
+		
 		grafo.adicionaAresta(zerind, oradea);
+		
 		grafo.adicionaAresta(oradea, sibiu);
+		
 		grafo.adicionaAresta(timisoara, lugoj);
+		
 		grafo.adicionaAresta(lugoj, mehadia);
+		
 		grafo.adicionaAresta(mehadia, dobreta);
+		
 		grafo.adicionaAresta(dobreta, craiova);
+		
 		grafo.adicionaAresta(sibiu, rimunicuVilcea);
 		grafo.adicionaAresta(sibiu, fagaras);
+		
 		grafo.adicionaAresta(craiova, pitesti);
 		grafo.adicionaAresta(craiova, rimunicuVilcea);
 
 		grafo.adicionaAresta(pitesti, rimunicuVilcea);
 		grafo.adicionaAresta(pitesti, bucharest);
+		
 		grafo.adicionaAresta(fagaras, bucharest);
+		
 		System.out.println("Inicio ");
 		System.out.println(grafo.toString());
 		System.out.println("-------------------------------------------");

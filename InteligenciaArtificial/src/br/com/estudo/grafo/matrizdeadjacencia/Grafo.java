@@ -96,14 +96,14 @@ public class Grafo {
 	}
 	
 	public void imprime(){
-		System.out.print(" ");
+		System.out.print("    ");
 		for(int i =0;i<this.numVertices;i++)
-			System.out.print(i+" ");
+			System.out.print(" "+i+" |");
 		System.out.println();
 		for(int i =0;i<this.numVertices;i++){
-			System.out.print(i+" ");
+			System.out.print(" "+i+" |");
 			for(int j =0;j<this.numVertices;j++){
-				System.out.print(this.mat[i][j]+" ");
+				System.out.print(" "+this.mat[i][j]+" |");
 				
 			}
 			System.out.println();
@@ -116,6 +116,7 @@ public class Grafo {
 	
 	public static void main(String[] args) {
 		Grafo grafo = new Grafo(10);
+		
 		grafo.insereAresta(1, 2, 1);
 		grafo.insereAresta(3, 4, 1);
 		grafo.insereAresta(5, 6, 1);
