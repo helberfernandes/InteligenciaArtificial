@@ -1,6 +1,6 @@
 package br.com.estudo.redeneural.feedforward;
 /**
- * Este exemplo foi retirado do livro Neural Networks Using C#
+ * Este exemplo foi retirado do livro Neural Networks Using C# Succinctly
  * de James McCaffrey e tem tão somente o intuito de estudo.
  * Realizei algumas modificações do exemplo afim de criar uma 
  * ideia mais orientada a objeto, e simplificar um pouco, em algusn casos.
@@ -36,6 +36,7 @@ public class FeedForward {
          
          showVector(yValues, 2, 4, true);
 	}
+	
 	
 	public static void showVector(double[] vector, int valsPerRow, int decimals, boolean newLine) {
         for (int i = 0; i < vector.length; ++i) {

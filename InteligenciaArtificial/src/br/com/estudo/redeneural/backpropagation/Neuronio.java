@@ -1,11 +1,6 @@
-package br.com.estudo.redeneural.feedforward;
+package br.com.estudo.redeneural.backpropagation;
 
 import java.util.Arrays;
-
-import br.com.estudo.redeneural.funcaoativacao.FuncaoAtivacao;
-import br.com.estudo.redeneural.funcaoativacao.FuncaoLinear;
-import br.com.estudo.redeneural.funcaoativacao.FuncaoSigmoid;
-
 /**
  * Um neuronio recebe um conjunto de entradas e responde a estimolos
  * 
@@ -17,48 +12,39 @@ public class Neuronio {
 	private double[] w;// pesos
 	private int numEntradas;
 	private double bias = -1;
-	private FuncaoAtivacao funcaoAtivacao;
-
+	//y e a saida do neuronio depois da funcao de ativacao
+	private double y;
+	
 	/**
 	 * 
-	 * @param numEntradas,
-	 *            total de entradas para o neuronio
+	 * @param numEntradas, total de entradas para o neuronio
 	 */
-	public Neuronio(int numEntradas,FuncaoAtivacao funcaoAtivacao) {
+	public Neuronio(int numEntradas) {
 		this.numEntradas = numEntradas;
 		x = new double[numEntradas];
 		w = new double[numEntradas];
-		this.funcaoAtivacao = funcaoAtivacao;
 	}
-	
-
-	public Neuronio(int numEntradas) {
-		this(numEntradas, new FuncaoSigmoid());
-	}
-
 
 	/**
 	 * Funcao que responsavel por classificar determinado problema
 	 * 
-	 * @param x
-	 *            Percepcoes do agente enviadas para a rede neural
-	 * @param usarFuncao
-	 *            para este probleam especifico, a camada de saida usa uma
-	 *            funcao que e ativada pela soma de todas as camadas de saida
-	 *            para este caso passar false.
+	 * @param x Percepcoes do agente enviadas para a rede neural
+	 * @param usarFuncao para este probleam especifico, a camada de saida usa uma funcao que e ativada pela soma de todas as camadas de saida
+	 * para este caso passar false.
 	 * @return resultado do processamenteo do neuronio
 	 */
-	public double classificar(double[] x) {
+	public double classificar(double[] x, boolean usarFuncao) {
 		double soma = 0.0;
 		for (int i = 0; i < numEntradas; i++) {
 			soma += x[i] * w[i];
 		}
 		soma += bias;
-		
-		return this.funcaoAtivacao.funcaoAtivacao(soma);
-
+		if (usarFuncao) {
+			return y=funcaoDeAtivacaoHyperTan(soma);
+		} else {
+			return y=soma;
+		}
 	}
-
 	/**
 	 * 
 	 * @return pessos do neuronio
@@ -66,9 +52,31 @@ public class Neuronio {
 	public double[] getW() {
 		return w;
 	}
-
+	
 	public void setBias(double bias) {
 		this.bias = bias;
+	}
+	
+
+	public double getBias() {
+		return bias;
+	}
+
+	public void setW(double[] w) {
+		this.w = w;
+	}
+
+	/**
+	 * Embora haja excecoes, em geral, a funcaoo tangente hiperbolica é a melhor
+	 * opção para a ativação da camada oculta.
+	 */
+	private static double funcaoDeAtivacaoHyperTan(double v) {
+		if (v < -20.0)
+			return -1.0;
+		else if (v > 20.0)
+			return 1.0;
+		else
+			return Math.tanh(v);
 	}
 
 	/**
@@ -96,6 +104,22 @@ public class Neuronio {
 			result[i] = Math.exp(oSums[i] - max) / scale;
 
 		return result; // Now scaled so that xi sums to 1.0.
+	}
+	
+	public double getDerivada(double desejado){
+		double derivative = (1 - y) * y; // Derivative of softmax is y(1y).        
+       // oGrads[i] = derivative * (desejado - y); // oGrad = (1 - O)(O) * (T-O) 
+		return derivative;
+	}
+	
+	public void atualizaPesos(double [] hGrads){
+		 for (int j = 0; j < w.length; ++j)
+         {
+//             double delta = learnRate * hGrads[j] * x[i];
+//             x[j] += delta; // Update.          
+//             x[j] += momentum * ihPrevWeightsDelta[i][j]; // Add momentum factor.          
+//             ihPrevWeightsDelta[i][j] = delta; // Save the delta for next time.       
+         }
 	}
 
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 import br.com.estudo.busca.Grafo;
 import br.com.estudo.busca.Node;
@@ -29,11 +30,11 @@ public class BuscaEmProfundidade extends MapBaseApp {
 	private Node objetivo;
 
 	boolean finalizar = false;
-	private Queue<Node> queue;
+	private Stack<Node> fronteira;
 	private List<Node> explorado = new ArrayList<Node>();
 
 	public BuscaEmProfundidade(Node objetivo) {
-		queue = new LinkedList<Node>();
+		fronteira = new Stack<Node>();
 		this.objetivo = objetivo;
 	}
 
@@ -42,26 +43,52 @@ public class BuscaEmProfundidade extends MapBaseApp {
 	 * 
 	 * @param node
 	 */
-	public void dfs(Node node) {
-		if (verificaObjetivo(node)) {
-			System.out.println("Elemento objetivo : " + node);
-			solucao(node);
-			return;
-		} else {
-			node.setVisitado(true);
-			queue.add(node);
-
-			Node element = queue.remove();
-			explorado.add(element);
-			Iterable<Node> adj = grafo.adj(element);
+//	public void dfs(Node node) {
+//		if (verificaObjetivo(node)) {
+//			System.out.println("Elemento objetivo : " + node);
+//			solucao(node);
+//			return;
+//		} else {
+//			node.setVisitado(true);
+//			queue.add(node);
+//
+//			Node element = queue.remove();
+//			explorado.add(element);
+//			Iterable<Node> adj = grafo.adj(element);
+//			for (Node n : adj) {
+//				if (n != null && !n.isVisitado()) {
+//					dfs(n);
+//				}
+//
+//			}
+//		}
+//
+//	}
+	
+	
+	public void dfs(Node node){
+		fronteira.push(node);
+		explorado.clear();
+		
+		while(!fronteira.isEmpty()){
+			System.out.println(fronteira);
+			Node estado= fronteira.pop();
+			explorado.add(estado);
+			if (verificaObjetivo(estado)) {
+				
+				getCanvas().setExplorado(explorado);
+				getCanvas().repaint();
+				return;
+			} 
+			Iterable<Node> adj = grafo.adj(estado);
 			for (Node n : adj) {
-				if (n != null && !n.isVisitado()) {
-					dfs(n);
+				if (!fronteira.contains(n) && !explorado.contains(n)) {
+					fronteira.push(n);
 				}
 
 			}
+			
 		}
-
 	}
 	
 	private void solucao(Node element) {

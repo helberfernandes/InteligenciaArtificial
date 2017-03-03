@@ -27,48 +27,62 @@ public class BuscaEmLargura extends MapBaseApp {
 	private Node objetivo;
 
 	boolean finalizar = false;
-	private Queue<Node> queue;
-	private List<Node> explorado = new ArrayList<Node>();
+	private Queue<Node> fronteira;// itens para ser explorados
+	private List<Node> explorado = new ArrayList<Node>();//lista com nos ja explorados
 
 	public BuscaEmLargura(Node objetivo) {
-		queue = new LinkedList<Node>();
+		fronteira = new LinkedList<Node>();
 		this.objetivo = objetivo;
 	}
 
 
 	/**
-	 * Busca em largura
+	 * Busca em largura - BREADTH FRIST SEARCH - BFS
 	 * 
 	 * @param node
 	 */
 	public void bfs(Node node) {
 		node.setVisitado(true);
-		queue.add(node);
+		fronteira.offer(node);
 		
-		while (!queue.isEmpty()) {
-
-			Node element = queue.remove();
-
+		while (!fronteira.isEmpty()) {
+			//System.out.println("Fronteira "+fronteira);
+			Node estado = fronteira.poll();//estado atual
+			explorado.add(estado);
+			
 			// verifica objetivo
-			if(verificaObjetivo(element)){
-				System.out.println("Elemento objetivo : " + element);
-				solucao(element);
+			if(verificaObjetivo(estado)){
+				//System.out.println("Elemento objetivo : " + nodeActual);
+				//solucao(nodeActual);
 				finalizar=true;
 				return;
 			}
 			
-			explorado.add(element);
 			
-
-			Iterable<Node> adj = grafo.adj(element);
+			
+			//obtem todos os nos adjacentes do no atualmente explorado
+			Iterable<Node> adj = grafo.adj(estado);
 			for (Node n : adj) {
-				if (n != null && !n.isVisitado()) {
+				if (!fronteira.contains(n) && !explorado.contains(n)) {
 					n.setVisitado(true);
-					queue.add(n);
+					fronteira.offer(n);
 				}
 
 			}
-
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			for(Node n: fronteira){
+//				if(!getCanvas().getExplorado().contains(n)){
+//					getCanvas().getExplorado().add(n);
+//				}
+//			}
+			
+			getCanvas().repaint();
+			
 		}
 	}
 	
