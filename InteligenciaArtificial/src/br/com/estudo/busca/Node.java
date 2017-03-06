@@ -1,5 +1,10 @@
 package br.com.estudo.busca;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class Node implements Comparable<Node>{
 	protected static final int BASICMOVEMENTCOST = 1;
 	private String nome;
@@ -8,9 +13,10 @@ public class Node implements Comparable<Node>{
 	private boolean visitado;
 	private boolean explorado;
 	private boolean inicioObjetivo;
-	private int custo;
+	private HashMap<Node, Integer> custo = new HashMap<Node, Integer>();
 	private Node pai;
 	private boolean diagonally;
+	private List<Node> filhos = new ArrayList<Node>();
 	
 	  /** Custo para alcancar o no. */
     private int gCusto;
@@ -19,12 +25,11 @@ public class Node implements Comparable<Node>{
     private int hCusto;
 	
 
-	public Node(String nome, int posicaoX, int posicaoY, int custo) {
+	public Node(String nome, int posicaoX, int posicaoY) {
 		super();
 		this.nome = nome;
 		this.posicaoX = posicaoX;
 		this.posicaoY = posicaoY;
-		this.custo = custo;
 	}
 
 	public Node(String nome) {
@@ -64,9 +69,15 @@ public class Node implements Comparable<Node>{
 	}
 
 	
-	public int getCusto() {
-		return custo+calculaCusto();
+	
+	public HashMap<Node, Integer> getCusto() {
+		return custo;
 	}
+
+	public void setCusto(HashMap<Node, Integer> custo) {
+		this.custo = custo;
+	}
+
 	/**
 	 * Obtendo o custo dos pais
 	 * @return
@@ -77,14 +88,12 @@ public class Node implements Comparable<Node>{
 		
 		while (no.getPai() != null) {
 			no = no.getPai();
-			total+=no.getCusto();
+			//total+=no.getCusto();
 		}
 		return total;
 	}
 
-	public void setCusto(int custo) {
-		this.custo = custo;
-	}
+	
 	
 	
 
@@ -144,14 +153,22 @@ public class Node implements Comparable<Node>{
 		
 	
 	
+	public List<Node> getFilhos() {
+		return filhos;
+	}
+
+	public void setFilhos(List<Node> filhos) {
+		this.filhos = filhos;
+	}
+
 	@Override
 	public int compareTo(Node node) {
-		if (this.getCusto()< node.getCusto()) {
-            return -1;
-        }
-        if (this.getCusto()> node.getCusto()) {
-            return 1;
-        }
+//		if (this.getCusto()< node.getCusto()) {
+//            return -1;
+//        }
+//        if (this.getCusto()> node.getCusto()) {
+//            return 1;
+//        }
         return 0;
 	}
 	

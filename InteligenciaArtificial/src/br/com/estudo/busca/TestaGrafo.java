@@ -19,22 +19,22 @@ public class TestaGrafo {
 	public static void main(String[] args) {
 		Grafo g = new Grafo(9);
 
-		g.adicionaAresta(new Node(ARAD, 1, 1, 0), new Node(ZERIND, 1, 0, 75));
-		g.adicionaAresta(new Node(ARAD, 1, 1, 0), new Node(TIMISOARA, 1, 2, 118));
-		g.adicionaAresta(new Node(ARAD, 1, 1, 0), new Node(SIBIU, 2, 1, 140));
-		g.adicionaAresta(new Node(ZERIND, 2, 1, 75), new Node(ORADEA, 2, 2, 0));
-		g.adicionaAresta(new Node(ORADEA, 2, 2, 0), new Node(SIBIU, 1, 2, 0));		
-		g.adicionaAresta(new Node(TIMISOARA, 2, 2, 118), new Node(LUGOJ, 1, 2, 0));		
-		g.adicionaAresta(new Node(LUGOJ, 2, 2, 0), new Node(MEHADIA, 1, 2, 0));
-		g.adicionaAresta(new Node(MEHADIA, 2, 2, 0), new Node(DOBRETA, 1, 2, 0));
-		g.adicionaAresta(new Node(DOBRETA, 2, 2, 0), new Node(CRAIOVA, 1, 2, 0));
-		g.adicionaAresta(new Node(CRAIOVA, 2, 2, 0), new Node(PITESTI, 1, 2, 0));
-		g.adicionaAresta(new Node(CRAIOVA, 2, 2, 0), new Node(RIMNICU_VILCEA, 1, 2, 0));		
-		g.adicionaAresta(new Node(RIMNICU_VILCEA, 2, 2, 0), new Node(SIBIU, 1, 2, 0));		
-		g.adicionaAresta(new Node(SIBIU, 2, 2, 140), new Node(FAGARAS, 1, 2, 0));
-		g.adicionaAresta(new Node(PITESTI, 2, 2, 0), new Node(RIMNICU_VILCEA, 1, 2, 0));
-		g.adicionaAresta(new Node(PITESTI, 2, 2, 0), new Node(BUCHAREST, 1, 2, 0));		
-		g.adicionaAresta(new Node(FAGARAS, 2, 2, 0), new Node(BUCHAREST, 1, 2, 0));
+//		g.adicionaAresta(new Node(ARAD, 1, 1, 0), new Node(ZERIND, 1, 0, 75));
+//		g.adicionaAresta(new Node(ARAD, 1, 1, 0), new Node(TIMISOARA, 1, 2, 118));
+//		g.adicionaAresta(new Node(ARAD, 1, 1, 0), new Node(SIBIU, 2, 1, 140));
+//		g.adicionaAresta(new Node(ZERIND, 2, 1, 75), new Node(ORADEA, 2, 2, 0));
+//		g.adicionaAresta(new Node(ORADEA, 2, 2, 0), new Node(SIBIU, 1, 2, 0));		
+//		g.adicionaAresta(new Node(TIMISOARA, 2, 2, 118), new Node(LUGOJ, 1, 2, 0));		
+//		g.adicionaAresta(new Node(LUGOJ, 2, 2, 0), new Node(MEHADIA, 1, 2, 0));
+//		g.adicionaAresta(new Node(MEHADIA, 2, 2, 0), new Node(DOBRETA, 1, 2, 0));
+//		g.adicionaAresta(new Node(DOBRETA, 2, 2, 0), new Node(CRAIOVA, 1, 2, 0));
+//		g.adicionaAresta(new Node(CRAIOVA, 2, 2, 0), new Node(PITESTI, 1, 2, 0));
+//		g.adicionaAresta(new Node(CRAIOVA, 2, 2, 0), new Node(RIMNICU_VILCEA, 1, 2, 0));		
+//		g.adicionaAresta(new Node(RIMNICU_VILCEA, 2, 2, 0), new Node(SIBIU, 1, 2, 0));		
+//		g.adicionaAresta(new Node(SIBIU, 2, 2, 140), new Node(FAGARAS, 1, 2, 0));
+//		g.adicionaAresta(new Node(PITESTI, 2, 2, 0), new Node(RIMNICU_VILCEA, 1, 2, 0));
+//		g.adicionaAresta(new Node(PITESTI, 2, 2, 0), new Node(BUCHAREST, 1, 2, 0));		
+//		g.adicionaAresta(new Node(FAGARAS, 2, 2, 0), new Node(BUCHAREST, 1, 2, 0));
 		
 
 

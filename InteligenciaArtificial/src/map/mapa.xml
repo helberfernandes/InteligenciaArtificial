@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapa>
+	<cidade>
+		<nome>Portland</nome>
+		<cidade_visinha>
+			<nome>San Francisco</nome>
+			<custo>151</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Salt Lake City</nome>
+			<custo>175</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Seattle</nome>
+			<custo>44</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	
+
+	<cidade>
+		<nome>San Francisco</nome>
+		<cidade_visinha>
+			<nome>Los Angeles</nome>
+			<custo>100</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Salt Lake City</nome>
+			<custo>156</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	<cidade>
+		<nome>Seattle</nome>
+		<cidade_visinha>
+			<nome>Vancouver</nome>
+			<custo>45</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Helena</nome>
+			<custo>189</custo>
+		</cidade_visinha>
+		
+		<cidade_visinha>
+			<nome>Calgary</nome>
+			<custo>118</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	<cidade>
+		<nome>Portland</nome>
+		<cidade_visinha>
+			<nome>San Francisco</nome>
+			<custo>151</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Salt Lake City</nome>
+			<custo>175</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Seattle</nome>
+			<custo>44</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	<cidade>
+		<nome>Vancouver</nome>
+		<cidade_visinha>
+			<nome>Calgary</nome>
+			<custo>100</custo>
+		</cidade_visinha>
+	</cidade>
+</mapa>

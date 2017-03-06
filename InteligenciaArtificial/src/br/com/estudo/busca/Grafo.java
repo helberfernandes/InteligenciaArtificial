@@ -179,11 +179,11 @@ public class Grafo {
 		for (Object o : adj.keySet().toArray()) {
 			Node n = (Node) o;
 
-			s.append(n.getNome()).append(" =>");
+			s.append(n.getNome()).append(" -->");
 
 			for (Node u : adj(n)) {
-				//s.append(u.getNome() + " Custo " + u.getCusto()).append(",");
-				s.append(u.getNome() + "  --> " ).append(",");
+				s.append(u.getNome() + " Custo " + u.getCusto()).append(",");
+				//s.append(u.getNome() + "  --> " ).append(",");
 			}
 			s.append(SL);
 		}

@@ -142,11 +142,11 @@ public class BuscaEmCustoUniforme extends MapBaseApp {
 	}
 
 	public static void main(String[] args) {
-		Node objetivo = new Node(BUCHAREST, 1, 2, 0);
+		Node objetivo = new Node(BUCHAREST, 1, 2);
 		BuscaEmCustoUniforme largura = new BuscaEmCustoUniforme(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node(ARAD, 50, 250, 140);
+		Node node4 = new Node(ARAD, 50, 250);
 		;
 
 		largura.bfs(node4);

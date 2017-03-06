@@ -90,10 +90,11 @@ public class MapBaseApp extends MapaBase {
 				}
 
 				g.fillOval(u.getPosicaoX(), u.getPosicaoY(), 10, 10);
-				g.drawString(u.getNome(), u.getPosicaoX() + 20, u.getPosicaoY() + 10);
+				g.drawString(u.getNome(), u.getPosicaoX() -10, u.getPosicaoY() -10);
 				g.drawLine(n.getPosicaoX() + 5, n.getPosicaoY() + 5, u.getPosicaoX() + 5, u.getPosicaoY() + 5);
+				
 				if (!n.isInicioObjetivo()) {
-					g.drawString(String.valueOf(u.getCusto()), u.getPosicaoX() - 40, u.getPosicaoY() + 20);
+					//g.drawString(String.valueOf(u.getCusto()), u.getPosicaoX() - 40, u.getPosicaoY() + 20);
 				}
 
 				if (!cidades.contains(u)) {
