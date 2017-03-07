@@ -1,23 +1,14 @@
 package br.com.estudo.busca.profundidade;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.image.ImageObserver;
-import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Queue;
 import java.util.Stack;
 
 import br.com.estudo.busca.Grafo;
 import br.com.estudo.busca.Node;
 import br.com.estudo.busca.map.MapBaseApp;
+import br.com.estudo.util.NodeComparator;
 
 /**
  * DFS - Depth-first search
@@ -43,76 +34,37 @@ public class BuscaEmProfundidade extends MapBaseApp {
 	 * 
 	 * @param node
 	 */
-//	public void dfs(Node node) {
-//		if (verificaObjetivo(node)) {
-//			System.out.println("Elemento objetivo : " + node);
-//			solucao(node);
-//			return;
-//		} else {
-//			node.setVisitado(true);
-//			queue.add(node);
-//
-//			Node element = queue.remove();
-//			explorado.add(element);
-//			Iterable<Node> adj = grafo.adj(element);
-//			for (Node n : adj) {
-//				if (n != null && !n.isVisitado()) {
-//					dfs(n);
-//				}
-//
-//			}
-//		}
-//
-//	}
-	
-	
-	public void dfs(Node node){
+	public void dfs(Node node) {
 		fronteira.push(node);
 		explorado.clear();
-		
-		while(!fronteira.isEmpty()){
-			System.out.println(fronteira);
-			Node estado= fronteira.pop();
+
+		while (!fronteira.isEmpty()) {
+
+			Node estado = fronteira.pop();
 			explorado.add(estado);
 			if (verificaObjetivo(estado)) {
-				
 				getCanvas().setExplorado(explorado);
 				getCanvas().repaint();
 				return;
-			} 
-			Iterable<Node> adj = grafo.adj(estado);
-			for (Node n : adj) {
+			}
+			List<Node> adj2 = grafo.adj(estado, Grafo.ORDER_NAME);
+
+			/*
+			 * a lista vem ordenada neste caso para funcionar com a pilha devo
+			 * colocar em ordem reversa pois dara errado em ordem cescente
+			 * exemplo: numa pilha adiciono em ordem A, B,C se desejo explorar A
+			 * por primeiro a pilha me retornara C entao eu coloco em ordem
+			 * reversa para resolver o problema
+			 */
+			Collections.reverse(adj2);
+
+			for (Node n : adj2) {
 				if (!fronteira.contains(n) && !explorado.contains(n)) {
 					fronteira.push(n);
 				}
-
 			}
-			
+
 		}
-	}
-	
-	private void solucao(Node element) {
-		List<Node> solucao = new ArrayList<Node>();
-		
-		
-		
-		// Deveria ser comportamento da busca?
-				String retorno = "";
-				Node no = element;
-				solucao.add(no);
-				retorno += no.getNome();
-				while (no.getPai() != null) {
-					no = no.getPai();
-					solucao.add(no);
-					retorno = no.getNome() + " " + retorno;
-				}
-				 System.out.println("REsultado "+retorno);
-		
-		
-		getCanvas().setExplorado(solucao);
-		getCanvas().repaint();
-	
-		
 	}
 
 	private boolean verificaObjetivo(Node element) {
@@ -139,14 +91,13 @@ public class BuscaEmProfundidade extends MapBaseApp {
 	}
 
 	public static void main(String[] args) {
-		Node objetivo = new Node(BUCHAREST, 1, 2);
+		Node objetivo = new Node("Vancouver", 1, 2);
 		BuscaEmProfundidade largura = new BuscaEmProfundidade(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node(ARAD, 1, 1);
+		Node node4 = new Node("Chicago", 1, 1);
 
 		largura.dfs(node4);
-		// System.out.println(largura.getG().toString());
 
 		System.out.println(largura.getExplorado());
 

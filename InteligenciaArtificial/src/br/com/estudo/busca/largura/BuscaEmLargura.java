@@ -61,7 +61,7 @@ public class BuscaEmLargura extends MapBaseApp {
 			
 			
 			//obtem todos os nos adjacentes do no atualmente explorado
-			Iterable<Node> adj = grafo.adj(estado);
+			List<Node> adj = grafo.adj(estado, Grafo.ORDER_NAME);
 			for (Node n : adj) {
 				if (!fronteira.contains(n) && !explorado.contains(n)) {
 					n.setVisitado(true);
@@ -69,46 +69,14 @@ public class BuscaEmLargura extends MapBaseApp {
 				}
 
 			}
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			for(Node n: fronteira){
-//				if(!getCanvas().getExplorado().contains(n)){
-//					getCanvas().getExplorado().add(n);
-//				}
-//			}
+
 			
 			getCanvas().repaint();
 			
 		}
 	}
 	
-	private void solucao(Node element) {
-		List<Node> solucao = new ArrayList<Node>();
-		
-		
-		
-		// Deveria ser comportamento da busca?
-				String retorno = "";
-				Node no = element;
-				solucao.add(no);
-				retorno += no.getNome();
-				while (no.getPai() != null) {
-					no = no.getPai();
-					solucao.add(no);
-					retorno = no.getNome() + " " + retorno;
-				}
-				 System.out.println("REsultado "+retorno);
-		
-		
-		getCanvas().setExplorado(solucao);
-		getCanvas().repaint();
 	
-		
-	}
 
 	private boolean verificaObjetivo(Node element) {
 		if (objetivo.equals(element)) {
@@ -140,11 +108,11 @@ public class BuscaEmLargura extends MapBaseApp {
 
 
 	public static void main(String[] args) {
-		Node objetivo =new Node("Salt Lake City", 1, 2);
+		Node objetivo =new Node("Omaha", 1, 2);
 		BuscaEmLargura largura = new BuscaEmLargura(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node("Portland", 1, 1);
+		Node node4 = new Node("Calgary", 1, 1);
 
 		largura.bfs(node4);
 		//System.out.println(largura.getG().toString());

@@ -15,9 +15,9 @@
 			<custo>44</custo>
 		</cidade_visinha>
 	</cidade>
-	
-	
-	
+
+
+
 
 	<cidade>
 		<nome>San Francisco</nome>
@@ -30,8 +30,8 @@
 			<custo>156</custo>
 		</cidade_visinha>
 	</cidade>
-	
-	
+
+
 	<cidade>
 		<nome>Seattle</nome>
 		<cidade_visinha>
@@ -42,34 +42,464 @@
 			<nome>Helena</nome>
 			<custo>189</custo>
 		</cidade_visinha>
-		
+
 		<cidade_visinha>
 			<nome>Calgary</nome>
 			<custo>118</custo>
 		</cidade_visinha>
 	</cidade>
-	
-	<cidade>
-		<nome>Portland</nome>
-		<cidade_visinha>
-			<nome>San Francisco</nome>
-			<custo>151</custo>
-		</cidade_visinha>
-		<cidade_visinha>
-			<nome>Salt Lake City</nome>
-			<custo>175</custo>
-		</cidade_visinha>
-		<cidade_visinha>
-			<nome>Seattle</nome>
-			<custo>44</custo>
-		</cidade_visinha>
-	</cidade>
-	
+
+
+
 	<cidade>
 		<nome>Vancouver</nome>
 		<cidade_visinha>
 			<nome>Calgary</nome>
 			<custo>100</custo>
 		</cidade_visinha>
+	</cidade>
+
+
+	<cidade>
+		<nome>Calgary</nome>
+		<cidade_visinha>
+			<nome>Helena</nome>
+			<custo>130</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Winnipeg</nome>
+			<custo>180</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+	<cidade>
+		<nome>Helena</nome>
+
+
+		<cidade_visinha>
+			<nome>Winnipeg</nome>
+			<custo>137</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Salt Lake City</nome>
+			<custo>116</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Duluth</nome>
+			<custo>150</custo>
+		</cidade_visinha>
+
+		
+
+
+		<cidade_visinha>
+			<nome>Omaha</nome>
+			<custo>174</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+	<cidade>
+		<nome>Salt Lake City</nome>
+		<cidade_visinha>
+			<nome>Las Vegas</nome>
+			<custo>89</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Denver</nome>
+			<custo>101</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+	<cidade>
+		<nome>Los Angeles</nome>
+		<cidade_visinha>
+			<nome>Las Vegas</nome>
+			<custo>66</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Phoenix</nome>
+			<custo>109</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>El Paso</nome>
+			<custo>191</custo>
+		</cidade_visinha>
+	</cidade>
+
+
+
+	<cidade>
+		<nome>Denver</nome>
+		<cidade_visinha>
+			<nome>Santa Fe</nome>
+			<custo>70</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Phoenix</nome>
+			<custo>128</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Kansas City</nome>
+			<custo>135</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Omaha</nome>
+			<custo>130</custo>
+		</cidade_visinha>
+		
+		<cidade_visinha>
+			<nome>Helena</nome>
+			<custo>126</custo>
+		</cidade_visinha>
+	</cidade>
+
+
+
+	<cidade>
+		<nome>Santa Fe</nome>
+
+
+		<cidade_visinha>
+			<nome>Phoenix</nome>
+			<custo>85</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>El Paso</nome>
+			<custo>65</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Oklahoma City</nome>
+			<custo>121</custo>
+		</cidade_visinha>
+	</cidade>
+
+
+
+	<cidade>
+		<nome>El Paso</nome>
+
+
+		<cidade_visinha>
+			<nome>Dallas</nome>
+			<custo>140</custo>
+		</cidade_visinha>
+
+
+	</cidade>
+
+
+	<cidade>
+		<nome>Dallas</nome>
+
+
+		<cidade_visinha>
+			<nome>Houston</nome>
+			<custo>46</custo>
+		</cidade_visinha>
+
+
+		<cidade_visinha>
+			<nome>Little Rock</nome>
+			<custo>74</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+	<cidade>
+		<nome>Oklahoma City</nome>
+
+
+		<cidade_visinha>
+			<nome>Kansas City</nome>
+			<custo>61</custo>
+		</cidade_visinha>
+
+
+		<cidade_visinha>
+			<nome>Little Rock</nome>
+			<custo>72</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+	<cidade>
+		<nome>Little Rock</nome>
+
+
+		<cidade_visinha>
+			<nome>New Orleans</nome>
+			<custo>100</custo>
+		</cidade_visinha>
+
+
+		<cidade_visinha>
+			<nome>Nashville</nome>
+			<custo>94</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Saint Louis</nome>
+			<custo>61</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+
+
+	<cidade>
+		<nome>Kansas City</nome>
+		<cidade_visinha>
+			<nome>Saint Louis</nome>
+			<custo>68</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+
+	<cidade>
+		<nome>New Orleans</nome>
+
+		<cidade_visinha>
+			<nome>Houston</nome>
+			<custo>80</custo>
+		</cidade_visinha>
+
+
+		<cidade_visinha>
+			<nome>Miami</nome>
+			<custo>151</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Atlanta</nome>
+			<custo>120</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+
+	<cidade>
+		<nome>Miami</nome>
+
+		<cidade_visinha>
+			<nome>Charleston</nome>
+			<custo>80</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Atlanta</nome>
+			<custo>116</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+
+	<cidade>
+		<nome>Atlanta</nome>
+
+		<cidade_visinha>
+			<nome>Charleston</nome>
+			<custo>63</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Nashville</nome>
+			<custo>67</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+
+	<cidade>
+		<nome>Raleigh</nome>
+
+		<cidade_visinha>
+			<nome>Charleston</nome>
+			<custo>96</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Atlanta</nome>
+			<custo>96</custo>
+		</cidade_visinha>
+		
+			<cidade_visinha>
+			<nome>Washington</nome>
+			<custo>47</custo>
+		</cidade_visinha>
+
+	</cidade>
+
+
+
+
+	<cidade>
+		<nome>Chicago</nome>
+
+		<cidade_visinha>
+			<nome>Duluth</nome>
+			<custo>157</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Omaha</nome>
+			<custo>142</custo>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>Saint Louis</nome>
+			<custo>104</custo>
+		</cidade_visinha>
+
+
+		<cidade_visinha>
+			<nome>Pittsburgh</nome>
+			<custo>81</custo>
+		</cidade_visinha>
+
+	</cidade>
+	
+	
+	<cidade>
+		<nome>Saint Louis</nome>
+
+		<cidade_visinha>
+			<nome>Nashville</nome>
+			<custo>85</custo>
+		</cidade_visinha>
+
+		
+
+	</cidade>
+	
+	
+	<cidade>
+		<nome>Nashville</nome>
+		<cidade_visinha>
+			<nome>Raleigh</nome>
+			<custo>128</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	<cidade>
+		<nome>Duluth</nome>
+		<cidade_visinha>
+			<nome>Omaha</nome>
+			<custo>74</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Winnipeg</nome>
+			<custo>103</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Sault Ste Marie</nome>
+			<custo>110</custo>
+		</cidade_visinha>
+	</cidade>
+
+
+
+	<cidade>
+		<nome>Sault Ste Marie</nome>
+		<cidade_visinha>
+			<nome>Montreal</nome>
+			<custo>193</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Winnipeg</nome>
+			<custo>156</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Toronto</nome>
+			<custo>90</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	
+	
+	<cidade>
+		<nome>New York</nome>
+		<cidade_visinha>
+			<nome>Washington</nome>
+			<custo>76</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Pittsburgh</nome>
+			<custo>69</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Boston</nome>
+			<custo>74</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Montreal</nome>
+			<custo>99</custo>
+		</cidade_visinha>
+	</cidade>
+
+
+
+<cidade>
+		<nome>Washington</nome>
+	
+		<cidade_visinha>
+			<nome>Pittsburgh</nome>
+			<custo>85</custo>
+		</cidade_visinha>
+		
+	</cidade>
+	
+	
+	<cidade>
+		<nome>Pittsburgh</nome>
+	
+		<cidade_visinha>
+			<nome>Toronto</nome>
+			<custo>80</custo>
+		</cidade_visinha>
+		
+	</cidade>
+	
+	<cidade>
+		<nome>Boston</nome>
+		<cidade_visinha>
+			<nome>Montreal</nome>
+			<custo>69</custo>
+		</cidade_visinha>
+		
+	</cidade>
+	
+	
+	<cidade>
+		<nome>Montreal</nome>
+		<cidade_visinha>
+			<nome>Toronto</nome>
+			<custo>115</custo>
+		</cidade_visinha>
+		
 	</cidade>
 </mapa>

@@ -2,11 +2,17 @@ package br.com.estudo.busca;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Grafo {
+import br.com.estudo.util.CostComparator;
+import br.com.estudo.util.NodeComparator;
 
+public class Grafo {
+	public static int ORDER_NAME = 0;
+	public static int ORDER_COST = 1;
 	private int numVertices;
 	private int numArestas;
 	private HashMap<Node, ArrayDeque<Node>> adj;
@@ -59,8 +65,31 @@ public class Grafo {
 
 	}
 
-	public Iterable<Node> adj(Node v) {
-		return adj.get(v);
+	/**
+	 * Devolve uma lista de nos adjacentes ao informado. Note que neste caso
+	 * devolvo a lista ordenad pelo nome do node
+	 * 
+	 * @param um
+	 *            Node que se deseja obter os adjascentes
+	 * @return lista ordenada contendo os Nodes adjascentes ao Node informado
+	 */
+	public List<Node> adj(Node v, int order) {
+		Node pai=v;
+		Iterable<Node> lista = adj.get(v);
+
+		List<Node> adj2 = new ArrayList<Node>();
+
+		for (Node n : lista) {
+			adj2.add(n);
+		}
+
+		if (order == ORDER_NAME) {
+			Collections.sort(adj2, new NodeComparator<>());
+		} else {
+			Collections.sort(adj2, new CostComparator(pai));
+		}
+
+		return adj2;
 	}
 
 	public void updateNode(Node a, Node b) {
@@ -171,43 +200,44 @@ public class Grafo {
 		this.root = root;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder s = new StringBuilder();
-		String SL = System.getProperty("line.separator");
-
-		for (Object o : adj.keySet().toArray()) {
-			Node n = (Node) o;
-
-			s.append(n.getNome()).append(" -->");
-
-			for (Node u : adj(n)) {
-				s.append(u.getNome() + " Custo " + u.getCusto()).append(",");
-				//s.append(u.getNome() + "  --> " ).append(",");
-			}
-			s.append(SL);
-		}
-
-		s.append("----------------------------\n");
-
-		// for (int x = 0; x < 4; x++) {
-		// for (int y = 0; y < 4; y++) {
-		// for (Node n : nodes) {
-		// if (n.getPosicaoX() == x && n.getPosicaoY() == y) {
-		// // System.out.print(list.get(i).getNome());
-		// s.append(n.getNome());
-		//
-		// }
-		// }
-		// s.append(" ");
-		// // System.out.print(" ");
-		// }
-		s.append("\n");
-		// System.out.println("");
-		// }
-
-		return s.toString();
-	}
+//	@Override
+//	public String toString() {
+//		StringBuilder s = new StringBuilder();
+//		String SL = System.getProperty("line.separator");
+//		Object arr[] = adj.keySet().toArray();
+//		Arrays.sort(arr, new NodeComparator());
+//		for (Object o : arr) {
+//			Node n = (Node) o;
+//
+//			s.append(n.getNome()).append(" -->");
+//
+//			for (Node u : adj(n, Grafo.ORDER_NAME)) {
+//				// s.append(u.getNome() + " Custo " + u.getCusto()).append(",");
+//				s.append(u.getNome() + "  --> ").append(",");
+//			}
+//			s.append(SL);
+//		}
+//
+//		s.append("----------------------------\n");
+//
+//		// for (int x = 0; x < 4; x++) {
+//		// for (int y = 0; y < 4; y++) {
+//		// for (Node n : nodes) {
+//		// if (n.getPosicaoX() == x && n.getPosicaoY() == y) {
+//		// // System.out.print(list.get(i).getNome());
+//		// s.append(n.getNome());
+//		//
+//		// }
+//		// }
+//		// s.append(" ");
+//		// // System.out.print(" ");
+//		// }
+//		s.append("\n");
+//		// System.out.println("");
+//		// }
+//
+//		return s.toString();
+//	}
 
 	// @Override
 	// public String toString() {

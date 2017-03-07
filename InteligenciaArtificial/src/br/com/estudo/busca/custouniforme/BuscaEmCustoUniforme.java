@@ -17,106 +17,66 @@ import java.util.Queue;
 
 import br.com.estudo.busca.Grafo;
 import br.com.estudo.busca.Node;
+import br.com.estudo.busca.largura.BuscaEmLargura;
 import br.com.estudo.busca.map.MapBaseApp;
 
 /**
- * BrFS - Breadth-first search
+ * UCS - Uniform-Cost Search
  * 
  * @author Helber
  *
  */
 public class BuscaEmCustoUniforme extends MapBaseApp {
-
 	private Node objetivo;
 
-	boolean finalizar = false;
-	private Queue<Node> queue;
-	private List<Node> explorado = new ArrayList<Node>();
-	private List<Node> nosOrdenados = new ArrayList<Node>();
+	
+	private Queue<Node> fronteira;// itens para ser explorados
+	private List<Node> explorado = new ArrayList<Node>();//lista com nos ja explorados
 
 	public BuscaEmCustoUniforme(Node objetivo) {
-		queue = new LinkedList<Node>();
+		fronteira = new LinkedList<Node>();
 		this.objetivo = objetivo;
 	}
 
+
 	/**
-	 * Busca em largura
+	 * UCS - Uniform-Cost Search
 	 * 
 	 * @param node
 	 */
-	public void bfs(Node node) {
+	public void ucs(Node node) {
+		
 		node.setVisitado(true);
-		queue.add(node);
-
-		while (!queue.isEmpty()) {
-
-			nosOrdenados.clear();
-
-			for (Node n : queue) {
-				nosOrdenados.add(n);
-			}
-
-			Collections.sort(nosOrdenados);
-
-			queue.clear();
-			for (Node n : nosOrdenados) {
-				queue.add(n);
-			}
-			Node element = queue.remove();
-
+		fronteira.offer(node);
+		
+		while (!fronteira.isEmpty()) {
+			System.out.println("Fronteira "+fronteira);
+			Node estado = fronteira.poll();//estado atual
+			explorado.add(estado);
+			
 			// verifica objetivo
-			if (verificaObjetivo(element)) {
-				System.out.println("Elemento objetivo : " + element);
-				solucao(element);
-
-				// return;
+			if(verificaObjetivo(estado)){
+				return;
 			}
-
-			explorado.add(element);
-
-			Iterable<Node> adj = grafo.adj(element);
-
+			
+			
+			
+			//obtem todos os nos adjacentes do no atualmente explorado
+			List<Node> adj = grafo.adj(estado, Grafo.ORDER_COST);
 			for (Node n : adj) {
-				if(!n.isInicioObjetivo() && !n.getPai().equals(element)){
-					//n.setPai(element);
-				}
-				if (n != null && !explorado.contains(n) && !queue.contains(n)) {
-					
+				if (!fronteira.contains(n) && !explorado.contains(n)) {
 					n.setVisitado(true);
-					queue.add(n);
-				} else {
-					
-//					if (explorado.indexOf(n) != -1) {
-//						if (explorado.get(explorado.indexOf(n)).getCusto() < n.getCusto()) {
-//							explorado.set(explorado.indexOf(n), n);
-//						}
-//					}
+					fronteira.offer(n);
 				}
-
 			}
 
+			
+			
+			
 		}
 	}
-
-	private void solucao(Node element) {
-		List<Node> solucao = new ArrayList<Node>();
-
-		// Deveria ser comportamento da busca?
-		String retorno = "";
-		Node no = element;
-		solucao.add(no);
-		retorno += no.getNome();
-		while (no.getPai() != null) {
-			no = no.getPai();
-			solucao.add(no);
-			retorno = no.getNome() + " " + retorno;
-		}
-		System.out.println("REsultado " + retorno);
-
-		getCanvas().setExplorado(solucao);
-		getCanvas().repaint();
-
-	}
+	
+	
 
 	private boolean verificaObjetivo(Node element) {
 		if (objetivo.equals(element)) {
@@ -132,32 +92,33 @@ public class BuscaEmCustoUniforme extends MapBaseApp {
 	public void setG(Grafo g) {
 		this.grafo = grafo;
 	}
+	
+	
 
 	public List<Node> getExplorado() {
 		return explorado;
 	}
 
+
+
 	public void setExplorado(List<Node> explorado) {
 		this.explorado = explorado;
 	}
 
+
+
 	public static void main(String[] args) {
-		Node objetivo = new Node(BUCHAREST, 1, 2);
+		Node objetivo =new Node("Duluth", 1, 2);
 		BuscaEmCustoUniforme largura = new BuscaEmCustoUniforme(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node(ARAD, 50, 250);
-		;
+		Node node4 = new Node("Montreal", 1, 1);
 
-		largura.bfs(node4);
-		// System.out.println(largura.getG().toString());
+		largura.ucs(node4);
+		//System.out.println(largura.getG().toString());
 
-		// System.out.println(largura.getExplorado());
-		for (Node n : largura.getExplorado()) {
-			if (n.getPai() != null) {
-				System.out.println(n.getNome() + " pai " + n.getPai().getNome());
-			}
-		}
+		System.out.println(largura.getExplorado());
+
 	}
 
 }

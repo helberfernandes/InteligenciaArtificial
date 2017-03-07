@@ -1,10 +1,10 @@
 package br.com.estudo.util;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
@@ -13,7 +13,14 @@ import com.thoughtworks.xstream.io.xml.StaxDriver;
 import br.com.estudo.busca.Node;
 import br.com.estudo.map.util.Cidade;
 import br.com.estudo.map.util.Mapa;
-
+/**
+ * Esta Classe e responsavel por importar um mapa 
+ * para fins de estudo e transformalo em um grafo
+ * para posterior busca em grafos
+ * 
+ * @author Helber
+ * 
+ */
 public class MapImport {
 	private static List<Node> cidades = new ArrayList<Node>();
 	// aqui fica todas as cidades para que nao se repita em nenhum momento
@@ -91,8 +98,8 @@ public class MapImport {
 		
 		for (Cidade v : c.getCidades()) {
 			
-			x2=EstudoUtil.randInt(40, 300)+(2*4);
-			y2=EstudoUtil.randInt(40, 300);
+			x2=EstudoUtil.randInt(40, 1024)+(2*4);
+			y2=EstudoUtil.randInt(40, 800);
 			
 //				x2 =  (2*40+x2) +node.getPosicaoX();
 //				y2 =  node.getPosicaoY();
@@ -118,6 +125,8 @@ public class MapImport {
 			}
 			node.getCusto().put(nodeFilho, v.getCusto());
 			node.getFilhos().add(nodeFilho);
+			Collections.sort(node.getFilhos(),new NodeComparator());
+			
 			
 		}
 	}

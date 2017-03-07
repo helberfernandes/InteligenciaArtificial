@@ -8,8 +8,10 @@ import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import br.com.estudo.busca.Grafo;
 import br.com.estudo.busca.Node;
 
 public class MapBaseApp extends MapaBase {
@@ -22,6 +24,7 @@ public class MapBaseApp extends MapaBase {
 	public MapBaseApp() throws HeadlessException {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		canvas = new Canvas();
 		add("Center", canvas);
 		pack();
@@ -79,7 +82,7 @@ public class MapBaseApp extends MapaBase {
 			// g.setColor(Color.BLACK);
 			// }
 
-			for (Node u : grafo.adj(n)) {
+			for (Node u : grafo.adj(n, Grafo.ORDER_NAME)) {
 
 				
 				if (explorado.contains(u)) {

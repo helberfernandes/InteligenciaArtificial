@@ -56,7 +56,7 @@ public class BuscaEmProfundidadeApp extends MapBaseApp {
 
 			Node element = queue.remove();
 			explorado.add(element);
-			Iterable<Node> adj = grafo.adj(element);
+			Iterable<Node> adj = grafo.adj(element, Grafo.ORDER_NAME);
 			for (Node n : adj) {
 				if (n != null && !n.isVisitado()) {
 					dfs(n);

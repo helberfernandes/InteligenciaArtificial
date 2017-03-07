@@ -1,6 +1,6 @@
 package br.com.estudo.busca;
 
-import java.util.ArrayDeque;
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -109,7 +109,7 @@ public class Node implements Comparable<Node>{
 
 	@Override
 	public String toString() {
-		return "Node [nome=" + nome + "]";
+		return  nome;
 	}
 	
 	
@@ -169,7 +169,9 @@ public class Node implements Comparable<Node>{
 //        if (this.getCusto()> node.getCusto()) {
 //            return 1;
 //        }
-        return 0;
+		
+		
+        return this.nome.compareTo(node.getNome());
 	}
 	
 
