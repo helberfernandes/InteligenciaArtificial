@@ -91,10 +91,6 @@
 			<nome>Duluth</nome>
 			<custo>150</custo>
 		</cidade_visinha>
-
-		
-
-
 		<cidade_visinha>
 			<nome>Omaha</nome>
 			<custo>174</custo>
@@ -256,7 +252,7 @@
 
 		<cidade_visinha>
 			<nome>Saint Louis</nome>
-			<custo>61</custo>
+			<custo>60</custo>
 		</cidade_visinha>
 
 	</cidade>
@@ -337,7 +333,7 @@
 
 		<cidade_visinha>
 			<nome>Charleston</nome>
-			<custo>96</custo>
+			<custo>95</custo>
 		</cidade_visinha>
 
 		<cidade_visinha>

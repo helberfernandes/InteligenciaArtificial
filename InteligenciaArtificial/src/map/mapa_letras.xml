@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapa>
+	<cidade>
+		<nome>S</nome>
+		<cidade_visinha>
+			<nome>A</nome>
+			<custo>3</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>B</nome>
+			<custo>6</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>C</nome>
+			<custo>2</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	
+	<cidade>
+		<nome>A</nome>
+		<cidade_visinha>
+			<nome>D</nome>
+			<custo>3</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	<cidade>
+		<nome>B</nome>
+		<cidade_visinha>
+			<nome>D</nome>
+			<custo>4</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>G</nome>
+			<custo>9</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>E</nome>
+			<custo>2</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	<cidade>
+		<nome>C</nome>
+		<cidade_visinha>
+			<nome>E</nome>
+			<custo>1</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	<cidade>
+		<nome>D</nome>
+		<cidade_visinha>
+			<nome>F</nome>
+			<custo>5</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	<cidade>
+		<nome>E</nome>
+		<cidade_visinha>
+			<nome>H</nome>
+			<custo>5</custo>
+		</cidade_visinha>
+		
+		<cidade_visinha>
+			<nome>F</nome>
+			<custo>6</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	<cidade>
+		<nome>F</nome>
+		<cidade_visinha>
+			<nome>G</nome>
+			<custo>5</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	<cidade>
+		<nome>H</nome>
+		<cidade_visinha>
+			<nome>G</nome>
+			<custo>8</custo>
+		</cidade_visinha>
+	</cidade>
+	
+</mapa>

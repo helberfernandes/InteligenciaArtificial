@@ -39,7 +39,7 @@ public class BuscaEmProfundidade extends MapBaseApp {
 		explorado.clear();
 
 		while (!fronteira.isEmpty()) {
-
+			
 			Node estado = fronteira.pop();
 			explorado.add(estado);
 			if (verificaObjetivo(estado)) {
@@ -91,11 +91,11 @@ public class BuscaEmProfundidade extends MapBaseApp {
 	}
 
 	public static void main(String[] args) {
-		Node objetivo = new Node("Vancouver", 1, 2);
+		Node objetivo = new Node("G", 1, 2);
 		BuscaEmProfundidade largura = new BuscaEmProfundidade(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node("Chicago", 1, 1);
+		Node node4 = new Node("S", 1, 1);
 
 		largura.dfs(node4);
 

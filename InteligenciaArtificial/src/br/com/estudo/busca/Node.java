@@ -14,6 +14,7 @@ public class Node implements Comparable<Node>{
 	private boolean explorado;
 	private boolean inicioObjetivo;
 	private HashMap<Node, Integer> custo = new HashMap<Node, Integer>();
+	private int custoTotal;
 	private Node pai;
 	private boolean diagonally;
 	private List<Node> filhos = new ArrayList<Node>();
@@ -88,7 +89,8 @@ public class Node implements Comparable<Node>{
 		
 		while (no.getPai() != null) {
 			no = no.getPai();
-			//total+=no.getCusto();
+			total+=no.getCusto().get(pai.getPai());
+			
 		}
 		return total;
 	}
@@ -109,6 +111,7 @@ public class Node implements Comparable<Node>{
 
 	@Override
 	public String toString() {
+		//+" ("+custoTotal+")"
 		return  nome;
 	}
 	
@@ -161,6 +164,16 @@ public class Node implements Comparable<Node>{
 		this.filhos = filhos;
 	}
 
+	
+	
+	public int getCustoTotal() {
+		return custoTotal;
+	}
+
+	public void setCustoTotal(int custoTotal) {
+		this.custoTotal = custoTotal;
+	}
+
 	@Override
 	public int compareTo(Node node) {
 //		if (this.getCusto()< node.getCusto()) {
@@ -171,7 +184,7 @@ public class Node implements Comparable<Node>{
 //        }
 		
 		
-        return this.nome.compareTo(node.getNome());
+        return Integer.compare(custoTotal, node.getCustoTotal());
 	}
 	
 

@@ -42,7 +42,7 @@ public class MapImport {
 		stream.alias("cidade", Cidade.class);
 		stream.processAnnotations(Cidade.class);
 		stream.processAnnotations(Mapa.class);
-		Mapa mapa = (Mapa) stream.fromXML(new File("c:\\java\\mapa.xml"));
+		Mapa mapa = (Mapa) stream.fromXML(new File("c:\\java\\mapa_cidades.xml"));
 
 		return iniciaMapa(mapa);
 	}

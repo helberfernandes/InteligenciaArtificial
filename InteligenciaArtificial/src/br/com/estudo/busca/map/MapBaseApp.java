@@ -67,9 +67,9 @@ public class MapBaseApp extends MapaBase {
 			// node.setExplorado(true);
 			// }
 			// }
-			Node n = grafo.getRoot();
-
-			mostraAdjacente(g, n);
+//			Node n = grafo.getRoot();
+//
+//			mostraAdjacente(g, n);
 
 		}
 
