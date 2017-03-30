@@ -91,11 +91,11 @@ public class BuscaEmProfundidade extends MapBaseApp {
 	}
 
 	public static void main(String[] args) {
-		Node objetivo = new Node("G", 1, 2);
+		Node objetivo = new Node("Omaha", 1, 2);
 		BuscaEmProfundidade largura = new BuscaEmProfundidade(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node("S", 1, 1);
+		Node node4 = new Node("Calgary", 1, 1);
 
 		largura.dfs(node4);
 

@@ -1,7 +1,5 @@
 package br.com.estudo.redeneural.funcaoativacao;
 
-import br.com.estudo.redeneural.exception.NeuralException;
-
 public class FuncaoBipolar implements FuncaoAtivacao {
 
 	@Override
