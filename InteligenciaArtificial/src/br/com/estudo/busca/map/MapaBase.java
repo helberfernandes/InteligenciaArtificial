@@ -12,80 +12,35 @@ import br.com.estudo.map.util.Cidade;
 import br.com.estudo.util.MapImport;
 
 public class MapaBase extends JFrame {
-	public static final String ARAD = "Arad";
-	public static final String ZERIND = "zerind";
-	public static final String ORADEA = "Oradea";
-	public static final String TIMISOARA = "Timisoara";
-	public static final String LUGOJ = "Lugoj";
-	public static final String MEHADIA = "Mehadia";
-	public static final String DOBRETA = "Dobreta";
-	public static final String CRAIOVA = "craiova";
-	public static final String SIBIU = "Sibiu";
-	public static final String RIMNICU_VILCEA = "Rimnicu Vilcea";
-	public static final String FAGARAS = "Fagaras";
-	public static final String PITESTI = "Pitesti";
-	public static final String BUCHAREST = "Bucharest";
-
 	protected Grafo grafo = new Grafo(9);
-
+	private List<Node> cidades = new ArrayList<Node>();
+	
+	
+	
 	/**
 	 * cria o estado inicial do jogo 458 016 723
 	 */
-	public void iniciaJogo() {
-
-//		Node arad = new Node(ARAD, 50, 250, 0);
-//		arad.setInicioObjetivo(true);
-//		Node zerind = new Node(ZERIND, 70, 180, 75);
-//		Node timisoara = new Node(TIMISOARA, 50, 350, 118);
-//		Node sibiu = new Node(SIBIU, 230, 270, 140);
-//		Node oradea = new Node(ORADEA, 90, 110, 71);
-//		Node lugoj = new Node(LUGOJ, 150, 390, 111);
-//		Node mehadia = new Node(MEHADIA, 155, 430, 70);
-//		Node dobreta = new Node(DOBRETA, 150, 480, 75);
-//		Node craiova = new Node(CRAIOVA, 300, 500, 120);
-//		Node pitesti = new Node(PITESTI, 420, 390, 97);
-//		Node rimunicuVilcea = new Node(RIMNICU_VILCEA, 290, 350, 80);
-//		Node fagaras = new Node(FAGARAS, 400, 270, 99);
-//		Node bucharest = new Node(BUCHAREST, 550, 440, 0);
-//
-//		grafo.adicionaAresta(arad, zerind);
-//		grafo.adicionaAresta(arad, timisoara);
-//		grafo.adicionaAresta(arad, sibiu);
-//		
-//		grafo.adicionaAresta(zerind, oradea);
-//		
-//		grafo.adicionaAresta(oradea, sibiu);
-//		
-//		grafo.adicionaAresta(timisoara, lugoj);
-//		
-//		grafo.adicionaAresta(lugoj, mehadia);
-//		
-//		grafo.adicionaAresta(mehadia, dobreta);
-//		
-//		grafo.adicionaAresta(dobreta, craiova);
-//		
-//		grafo.adicionaAresta(sibiu, rimunicuVilcea);
-//		grafo.adicionaAresta(sibiu, fagaras);
-//		
-//		grafo.adicionaAresta(craiova, pitesti);
-//		grafo.adicionaAresta(craiova, rimunicuVilcea);
-//
-//		grafo.adicionaAresta(pitesti, rimunicuVilcea);
-//		grafo.adicionaAresta(pitesti, bucharest);
-//		
-//		grafo.adicionaAresta(fagaras, bucharest);
+	public void importaMapa() {
 		
-		List<Node> cidades =MapImport.getMap();
+		 cidades =MapImport.getMap();
 		
 		for(Node c: cidades){
+			/*
+			 * primeira cidade importada, para que sirva como inicio da montagem do mapa
+			 * pois apartir dela obtenho todos os adjacentes.
+			 */
+			if(grafo.getRoot()==null){
+				grafo.setRoot(c);
+			}
 			for(Node n:c.getFilhos()){
 				grafo.adicionaAresta(c, n);
 			}
+			
 		}
 		
-		System.out.println("Inicio ");
-		System.out.println(grafo.toString());
-		System.out.println("-------------------------------------------");
+//		System.out.println("Inicio ");
+//		System.out.println(grafo.toString());
+//		System.out.println("-------------------------------------------");
 		
 	}
 
@@ -96,11 +51,23 @@ public class MapaBase extends JFrame {
 	public void setGrafo(Grafo grafo) {
 		this.grafo = grafo;
 	}
+	
+	
+
+	
+
+	public List<Node> getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(List<Node> cidades) {
+		this.cidades = cidades;
+	}
 
 	public static void main(String[] args) {
 		List<Node> nosOrdenados = new ArrayList<Node>();
 		MapaBase base = new MapaBase();
-		base.iniciaJogo();
+		base.importaMapa();
 		base.setVisible(true);
 		for (Node n : base.getGrafo().getNodes()) {
 			nosOrdenados.add(n);

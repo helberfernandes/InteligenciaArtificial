@@ -58,7 +58,8 @@ public class BuscaEmCustoUniforme extends MapBaseApp {
 			System.out.println("Fronteira " + fronteira);
 			Node estado = fronteira.poll();// estado atual
 			explorado.add(estado);
-
+			getCanvas().getCidades().add(estado);
+			getCanvas().repaint();
 			// verifica objetivo
 			if (verificaObjetivo(estado)) {
 				return;

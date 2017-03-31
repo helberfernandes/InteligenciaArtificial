@@ -29,9 +29,7 @@ public class PerformanceTest {
 //     	 System.out.println();
 //      }
    
-      System.out.println("n1 "+Math.tanh(18));
-      System.out.println("n2 "+Math.tanh(24));
-      System.out.println("n3 "+Math.tanh(6));
+	   System.out.println("Distancia "+(Math.pow((-5-(-2)), 2)+Math.pow((-9-3), 2)));;
       
     
    }

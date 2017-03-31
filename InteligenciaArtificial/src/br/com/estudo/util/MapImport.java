@@ -28,7 +28,7 @@ public class MapImport {
 	private static Node node;
 	private static Node nodeFilho;
 	private static Node temp;
-	private static int x = 100, y = 200;
+	
 
 	public static void main(String[] args) {
 
@@ -51,7 +51,7 @@ public class MapImport {
 
 		int i = 0;
 		for (Cidade c : mapa.getCidades()) {
-			node = new Node(c.getNome(), x, y);
+			node = new Node(c.getNome());
 			
 			
 			// evitando duplicidade
@@ -92,14 +92,17 @@ public class MapImport {
 //		}
 		return cidades;
 	}
-	static int x2=10, y2=10;
+	
 	private static void carregaFilhos(List<Cidade> cidades, Cidade c, Node node) {
 		int i = 0;
 		
 		for (Cidade v : c.getCidades()) {
 			
-			x2=EstudoUtil.randInt(40, 1024)+(2*4);
-			y2=EstudoUtil.randInt(40, 800);
+			//x2=EstudoUtil.randInt(40, 800)+(2*4);
+			//y2=EstudoUtil.randInt(40, 800);
+			
+			
+		
 			
 //				x2 =  (2*40+x2) +node.getPosicaoX();
 //				y2 =  node.getPosicaoY();
@@ -108,10 +111,10 @@ public class MapImport {
 //					y2+=100;
 //				}
 				
-				System.out.println("Filho "+v.getNome()+" x = "+x2+" y = "+y2+" xpai ="+node.getPosicaoX());
+				//System.out.println("Filho "+v.getNome()+" x = "+x2+" y = "+y2+" xpai ="+node.getPosicaoX());
 				
 				
-			nodeFilho = new Node(v.getNome(), x2, y2);
+			nodeFilho = new Node(v.getNome());
 			if (listaTodascidades.contains(nodeFilho)) {
 				nodeFilho = listaTodascidades.get(listaTodascidades.indexOf(nodeFilho));
 			}

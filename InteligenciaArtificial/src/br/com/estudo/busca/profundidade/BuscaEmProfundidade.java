@@ -42,9 +42,10 @@ public class BuscaEmProfundidade extends MapBaseApp {
 			
 			Node estado = fronteira.pop();
 			explorado.add(estado);
+			getCanvas().getCidades().add(estado);
 			if (verificaObjetivo(estado)) {
-				getCanvas().setExplorado(explorado);
-				getCanvas().repaint();
+				
+				
 				return;
 			}
 			List<Node> adj2 = grafo.adj(estado, Grafo.ORDER_NAME);
@@ -63,7 +64,7 @@ public class BuscaEmProfundidade extends MapBaseApp {
 					fronteira.push(n);
 				}
 			}
-
+			getCanvas().repaint();
 		}
 	}
 
@@ -91,11 +92,11 @@ public class BuscaEmProfundidade extends MapBaseApp {
 	}
 
 	public static void main(String[] args) {
-		Node objetivo = new Node("Omaha", 1, 2);
+		Node objetivo = new Node("Los Angeles", 1, 2);
 		BuscaEmProfundidade largura = new BuscaEmProfundidade(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node("Calgary", 1, 1);
+		Node node4 = new Node("Portland", 1, 1);
 
 		largura.dfs(node4);
 

@@ -49,7 +49,7 @@ public class BuscaEmLargura extends MapBaseApp {
 			//System.out.println("Fronteira "+fronteira);
 			Node estado = fronteira.poll();//estado atual
 			explorado.add(estado);
-			
+			getCanvas().getCidades().add(estado);
 			// verifica objetivo
 			if(verificaObjetivo(estado)){
 				//System.out.println("Elemento objetivo : " + nodeActual);
@@ -108,11 +108,11 @@ public class BuscaEmLargura extends MapBaseApp {
 
 
 	public static void main(String[] args) {
-		Node objetivo =new Node("Omaha", 1, 2);
+		Node objetivo =new Node("Los Angeles", 1, 2);
 		BuscaEmLargura largura = new BuscaEmLargura(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node("Calgary", 1, 1);
+		Node node4 = new Node("Portland", 1, 1);
 
 		largura.bfs(node4);
 		//System.out.println(largura.getG().toString());

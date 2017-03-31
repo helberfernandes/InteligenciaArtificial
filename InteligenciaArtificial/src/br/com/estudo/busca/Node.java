@@ -25,6 +25,7 @@ public class Node implements Comparable<Node>{
     /** estimated costs to get from this AbstractNode to end AbstractNode. */
     private int hCusto;
 	
+   
 
 	public Node(String nome, int posicaoX, int posicaoY) {
 		super();
