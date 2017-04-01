@@ -42,7 +42,7 @@ public class MapImport {
 		stream.alias("cidade", Cidade.class);
 		stream.processAnnotations(Cidade.class);
 		stream.processAnnotations(Mapa.class);
-		Mapa mapa = (Mapa) stream.fromXML(new File("c:\\java\\mapa_cidades.xml"));
+		Mapa mapa = (Mapa) stream.fromXML(new File("c:\\java\\mapa_labirinto.xml"));
 
 		return iniciaMapa(mapa);
 	}
@@ -51,7 +51,7 @@ public class MapImport {
 
 		int i = 0;
 		for (Cidade c : mapa.getCidades()) {
-			node = new Node(c.getNome());
+			node = new Node(c.getNome(), c.getPx(),c.getPy());
 			
 			
 			// evitando duplicidade
@@ -114,7 +114,7 @@ public class MapImport {
 				//System.out.println("Filho "+v.getNome()+" x = "+x2+" y = "+y2+" xpai ="+node.getPosicaoX());
 				
 				
-			nodeFilho = new Node(v.getNome());
+			nodeFilho = new Node(v.getNome(), v.getPx(),v.getPy());
 			if (listaTodascidades.contains(nodeFilho)) {
 				nodeFilho = listaTodascidades.get(listaTodascidades.indexOf(nodeFilho));
 			}

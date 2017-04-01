@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapa>
+	<cidade>
+		<nome>Arad</nome>
+		<cidade_visinha>
+			<nome>Zerind</nome>
+			<custo>75</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Sibiu</nome>
+			<custo>175</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Timisoara</nome>
+			<custo>118</custo>
+		</cidade_visinha>
+	</cidade>
+
+
+
+
+	<cidade>
+		<nome>Zerind</nome>
+		<cidade_visinha>
+			<nome>Oradea</nome>
+			<custo>71</custo>
+		</cidade_visinha>
+		
+	</cidade>
+
+
+	<cidade>
+		<nome>Sibiu</nome>
+		<cidade_visinha>
+			<nome>Oradea</nome>
+			<custo>151</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Fagaras</nome>
+			<custo>99</custo>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>Rimnicu Vilcea</nome>
+			<custo>80</custo>
+		</cidade_visinha>
+	</cidade>
+	
+	
+		<cidade>
+		<nome>Timisoara</nome>
+		<cidade_visinha>
+			<nome>Lugoj</nome>
+			<custo>111</custo>
+		</cidade_visinha>
+		
+	</cidade>
+
+
+
+	<cidade>
+		<nome>Lugoj</nome>
+		<cidade_visinha>
+			<nome>Mehadia</nome>
+			<custo>70</custo>
+		</cidade_visinha>
+		
+	</cidade>
+
+</mapa>

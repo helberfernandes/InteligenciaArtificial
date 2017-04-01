@@ -11,6 +11,8 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 public class Cidade {
 	private String nome;
 	private int custo;
+	private int px;
+	private int py;
 	
 	@XStreamImplicit
 	@XStreamAlias(value="cidade_visinha")
@@ -33,6 +35,21 @@ public class Cidade {
 	}
 	public void setCidades(List<Cidade> cidades) {
 		this.cidades = cidades;
+	}
+	
+	
+	
+	public int getPx() {
+		return px;
+	}
+	public void setPx(int px) {
+		this.px = px;
+	}
+	public int getPy() {
+		return py;
+	}
+	public void setPy(int py) {
+		this.py = py;
 	}
 	@Override
 	public int hashCode() {

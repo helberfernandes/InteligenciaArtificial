@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapa>
+	<cidade>
+		<nome>A</nome>
+		<py>220</py>
+		<px>30</px>
+
+		<cidade_visinha>
+			<nome>B</nome>
+			<custo>3</custo>
+			<py>220</py>
+			<px>80</px>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>C</nome>
+			<custo>6</custo>
+			<py>30</py>
+			<px>25</px>
+		</cidade_visinha>
+		<cidade_visinha>
+			<nome>D</nome>
+			<custo>25</custo>
+			<py>400</py>
+			<px>30</px>
+		</cidade_visinha>
+	</cidade>
+
+
+
+
+	<cidade>
+		<nome>B</nome>
+		<cidade_visinha>
+			<nome>E</nome>
+			<custo>6</custo>
+			<py>100</py>
+			<px>80</px>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>F</nome>
+			<custo>25</custo>
+			<py>400</py>
+			<px>80</px>
+		</cidade_visinha>
+	</cidade>
+
+
+
+
+
+	<cidade>
+		<nome>E</nome>
+		<cidade_visinha>
+			<nome>G</nome>
+			<custo>6</custo>
+			<py>100</py>
+			<px>170</px>
+		</cidade_visinha>
+	</cidade>
+
+
+	<cidade>
+		<nome>G</nome>
+		<cidade_visinha>
+			<nome>H</nome>
+			<custo>6</custo>
+			<py>30</py>
+			<px>170</px>
+		</cidade_visinha>
+
+		<cidade_visinha>
+			<nome>I</nome>
+			<custo>25</custo>
+			<py>240</py>
+			<px>170</px>
+		</cidade_visinha>
+	</cidade>
+
+
+
+	<cidade>
+		<nome>H</nome>
+		<cidade_visinha>
+			<nome>J</nome>
+			<custo>6</custo>
+			<py>30</py>
+			<px>70</px>
+		</cidade_visinha>
+	</cidade>
+
+
+	<cidade>
+		<nome>I</nome>
+
+		<cidade_visinha>
+			<nome>L</nome>
+			<custo>25</custo>
+			<py>240</py>
+			<px>270</px>
+		</cidade_visinha>
+	</cidade>
+
+
+
+	<cidade>
+		<nome>L</nome>
+
+		<cidade_visinha>
+			<nome>M</nome>
+			<custo>25</custo>
+			<py>50</py>
+			<px>270</px>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	<cidade>
+		<nome>M</nome>
+
+		<cidade_visinha>
+			<nome>N</nome>
+			<custo>25</custo>
+			<py>50</py>
+			<px>370</px>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	<cidade>
+		<nome>N</nome>
+
+		<cidade_visinha>
+			<nome>O</nome>
+			<custo>25</custo>
+			<py>220</py>
+			<px>370</px>
+		</cidade_visinha>
+	</cidade>
+	
+	
+	<cidade>
+		<nome>O</nome>
+
+		<cidade_visinha>
+			<nome>P</nome>
+			<custo>25</custo>
+			<py>220</py>
+			<px>400</px>
+		</cidade_visinha>
+	</cidade>
+
+
+
+</mapa>
