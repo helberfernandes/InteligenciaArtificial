@@ -13,6 +13,7 @@ public class Cidade {
 	private int custo;
 	private int px;
 	private int py;
+	private int heuristica;
 	
 	@XStreamImplicit
 	@XStreamAlias(value="cidade_visinha")
@@ -50,6 +51,14 @@ public class Cidade {
 	}
 	public void setPy(int py) {
 		this.py = py;
+	}
+	
+	
+	public int getHeuristica() {
+		return heuristica;
+	}
+	public void setHeuristica(int heuristica) {
+		this.heuristica = heuristica;
 	}
 	@Override
 	public int hashCode() {

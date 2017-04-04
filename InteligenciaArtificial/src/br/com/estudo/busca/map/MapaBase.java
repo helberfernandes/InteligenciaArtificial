@@ -25,6 +25,8 @@ public class MapaBase extends JFrame {
 		 cidades =MapImport.getMap();
 		
 		for(Node c: cidades){
+			
+			
 			/*
 			 * primeira cidade importada, para que sirva como inicio da montagem do mapa
 			 * pois apartir dela obtenho todos os adjacentes.

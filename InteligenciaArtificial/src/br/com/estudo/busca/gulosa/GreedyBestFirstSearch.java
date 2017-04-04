@@ -1,7 +1,6 @@
-package br.com.estudo.busca.aestrela;
+package br.com.estudo.busca.gulosa;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -9,46 +8,49 @@ import java.util.Queue;
 import br.com.estudo.busca.Grafo;
 import br.com.estudo.busca.Node;
 import br.com.estudo.busca.map.MapBaseApp;
-import br.com.estudo.heuristicas.CostComparator2;
-import br.com.estudo.util.NodeComparator;
+import br.com.estudo.heuristicas.HeuristicaN;
+
 
 /**
- * UCS - Uniform-Cost Search
+ * GBFS-Greedy Best First Search
  * 
  * @author Helber
  *
  */
-public class BuscaAEstrela extends MapBaseApp {
+public class GreedyBestFirstSearch extends MapBaseApp {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1163755722547099105L;
+
 	private Node objetivo;
 
 	private Queue<Node> fronteira;// itens para ser explorados
+	private Queue<Node> fronteiraTemp;
 	private List<Node> explorado = new ArrayList<Node>();// lista com nos ja
 															// explorados
 
-	public BuscaAEstrela(Node objetivo) {
-		fronteira = new PriorityQueue<Node>(new CostComparator2());		
+	public GreedyBestFirstSearch(Node objetivo) {
+		fronteira = new PriorityQueue<Node>(500, new HeuristicaN());
+		fronteiraTemp= new PriorityQueue<Node>(500, new HeuristicaN());
 		this.objetivo = objetivo;
 	}
 
 	/**
-	 * UCS - Uniform-Cost Search
+	 * GBFS-Greedy Best First Search
 	 * 
 	 * @param node
 	 */
-	public void aEstrela(Node node) {
-
+	public void gbfs(Node node) {
 		node.setVisitado(true);
 		fronteira.offer(node);
 
-		while (!fronteira.isEmpty()) {
-		
+		while (!fronteira.isEmpty()) {			
 			System.out.println("Fronteira " + fronteira);
-			
-			
 			Node estado = fronteira.poll();// estado atual
 			explorado.add(estado);
-			// getCanvas().getCidades().add(estado);
-			// getCanvas().repaint();
+			getCanvas().getCidades().add(estado);
+			getCanvas().repaint();
 			// verifica objetivo
 			if (verificaObjetivo(estado)) {
 				return;
@@ -56,15 +58,15 @@ public class BuscaAEstrela extends MapBaseApp {
 
 			boolean remover = false;
 			// obtem todos os nos adjacentes do no atualmente explorado
-			List<Node> adj = grafo.adj(estado, Grafo.ORDER_COST2);
-			
+			List<Node> adj = grafo.adj(estado, Grafo.ORDER_HEURISTIC_N_COST);
 			for (Node n : adj) {
+				
 				if (!fronteira.contains(n) && !explorado.contains(n)) {
-					n.setPai(estado);
+					n.setPai(estado);					
 					fronteira.offer(n);
 				} else if (fronteira.contains(n)) {
 					for (Node tmp : fronteira) {
-						if (n.getCustoTotal() < tmp.getCustoTotal()) {
+						if (n.gethCusto() < tmp.gethCusto()) {
 							remover = false;
 						}
 					}
@@ -76,6 +78,16 @@ public class BuscaAEstrela extends MapBaseApp {
 				}
 			}
 
+			fronteiraTemp.clear();
+			for(Node n: fronteira){
+				fronteiraTemp.add(n);
+			}
+			
+			fronteira.clear();
+			for(Node n: fronteiraTemp){
+				fronteira.add(n);
+			}
+			
 		}
 	}
 
@@ -104,16 +116,18 @@ public class BuscaAEstrela extends MapBaseApp {
 
 	public static void main(String[] args) {
 		Node objetivo = new Node("Calgary", 1, 2);
-		BuscaAEstrela largura = new BuscaAEstrela(objetivo);
-		// largura.setVisible(true);
-
-		Node node4 = new Node("Las Vegas", 1, 1);
-
-		largura.aEstrela(node4);
-		// System.out.println(largura.getG().toString());
+		Node inicio = new Node("Las Vegas", 1, 1);
+		GreedyBestFirstSearch largura = new GreedyBestFirstSearch(objetivo);
+		largura.setVisible(true);
+		largura.gbfs(inicio);
+		
 
 		System.out.println(largura.getExplorado());
 
 	}
+	
+	
+	
+
 
 }

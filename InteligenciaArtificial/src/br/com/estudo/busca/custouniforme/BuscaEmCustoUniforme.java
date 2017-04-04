@@ -20,7 +20,7 @@ import br.com.estudo.busca.Grafo;
 import br.com.estudo.busca.Node;
 import br.com.estudo.busca.largura.BuscaEmLargura;
 import br.com.estudo.busca.map.MapBaseApp;
-import br.com.estudo.util.CostComparator;
+import br.com.estudo.heuristicas.CostComparator;
 
 /**
  * UCS - Uniform-Cost Search
@@ -123,11 +123,11 @@ public class BuscaEmCustoUniforme extends MapBaseApp {
 	}
 
 	public static void main(String[] args) {
-		Node objetivo = new Node("Duluth", 1, 2);
+		Node objetivo = new Node("Sault Ste Marie", 1, 2);
 		BuscaEmCustoUniforme largura = new BuscaEmCustoUniforme(objetivo);
 		largura.setVisible(true);
 
-		Node node4 = new Node("Montreal", 1, 1);
+		Node node4 = new Node("Saint Louis", 1, 1);
 
 		largura.ucs(node4);
 		// System.out.println(largura.getG().toString());

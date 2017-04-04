@@ -7,12 +7,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import br.com.estudo.util.CostComparator;
+import br.com.estudo.heuristicas.CostComparator;
+import br.com.estudo.heuristicas.CostComparator2;
+import br.com.estudo.heuristicas.HeuristicaN;
 import br.com.estudo.util.NodeComparator;
 
 public class Grafo {
 	public static int ORDER_NAME = 0;
 	public static int ORDER_COST = 1;
+	public static int ORDER_COST2 = 2;
+	public static int ORDER_HEURISTIC_N_COST = 3;
 	private int numVertices;
 	private int numArestas;
 	private HashMap<Node, ArrayDeque<Node>> adj;
@@ -85,9 +89,13 @@ public class Grafo {
 
 		if (order == ORDER_NAME) {
 			Collections.sort(adj2, new NodeComparator<>());
-		} else {
+		} else if (order == ORDER_COST) {
 			Collections.sort(adj2, new CostComparator(pai));
-		}
+		} else if (order == ORDER_COST2) {
+			Collections.sort(adj2, new CostComparator2(pai));	
+		} else if (order == ORDER_HEURISTIC_N_COST) {
+			Collections.sort(adj2, new HeuristicaN());
+		}	
 
 		return adj2;
 	}

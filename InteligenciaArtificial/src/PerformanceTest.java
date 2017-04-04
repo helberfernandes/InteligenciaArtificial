@@ -5,9 +5,14 @@ import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import javax.imageio.ImageIO;
 
+import br.com.estudo.busca.Node;
+import br.com.estudo.heuristicas.CostComparator;
+import br.com.estudo.heuristicas.CostComparator2;
 import br.com.estudo.util.ImageUtil;
 
 public class PerformanceTest {
@@ -29,8 +34,8 @@ public class PerformanceTest {
 //     	 System.out.println();
 //      }
    
-	   System.out.println("Distancia "+(Math.pow((-5-(-2)), 2)+Math.pow((-9-3), 2)));;
-      
+	   
+	
     
    }
   

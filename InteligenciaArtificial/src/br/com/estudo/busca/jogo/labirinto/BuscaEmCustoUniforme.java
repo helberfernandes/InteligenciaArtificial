@@ -21,7 +21,7 @@ import br.com.estudo.busca.Node;
 import br.com.estudo.busca.jogo.labirinto.LabirintoBase.Canvas;
 import br.com.estudo.busca.largura.BuscaEmLargura;
 import br.com.estudo.busca.map.MapBaseApp;
-import br.com.estudo.util.CostComparator;
+import br.com.estudo.heuristicas.CostComparator;
 
 /**
  * UCS - Uniform-Cost Search

@@ -42,7 +42,7 @@ public class MapImport {
 		stream.alias("cidade", Cidade.class);
 		stream.processAnnotations(Cidade.class);
 		stream.processAnnotations(Mapa.class);
-		Mapa mapa = (Mapa) stream.fromXML(new File("c:\\java\\mapa_labirinto.xml"));
+		Mapa mapa = (Mapa) stream.fromXML(new File("c:\\java\\mapa_cidades.xml"));
 
 		return iniciaMapa(mapa);
 	}
@@ -52,13 +52,14 @@ public class MapImport {
 		int i = 0;
 		for (Cidade c : mapa.getCidades()) {
 			node = new Node(c.getNome(), c.getPx(),c.getPy());
-			
+			node.sethCusto(c.getHeuristica());
 			
 			// evitando duplicidade
 			if (listaTodascidades.contains(node)) {
 				node = listaTodascidades.get(listaTodascidades.indexOf(node));
 			}
-
+			
+			
 			//System.out.println("Node Pai "+node.getNome());
 			
 			carregaFilhos(c.getCidades(), c,node);
@@ -82,9 +83,9 @@ public class MapImport {
 		}
 
 //		for (Node n : cidades) {
-//			System.out.println(n.getNome() + " " + n.getCusto());
+//			System.out.println(n.getNome() + " " + n.gethCusto());
 //			for (Node b : n.getFilhos()) {
-//				System.out.println("  " + b.getNome() + " " + b.getCusto());
+//				System.out.println("  " + b.getNome() + " " + b.gethCusto());
 //			}
 //			System.out.println();
 //			System.out.println();
@@ -120,6 +121,9 @@ public class MapImport {
 			}
 
 			nodeFilho.getCusto().put(node, v.getCusto());
+			
+			nodeFilho.sethCusto(v.getHeuristica());
+			
 
 			if (!listaTodascidades.contains(nodeFilho)) {
 				listaTodascidades.add(nodeFilho);
@@ -128,10 +132,16 @@ public class MapImport {
 			}
 			node.getCusto().put(nodeFilho, v.getCusto());
 			node.getFilhos().add(nodeFilho);
-			Collections.sort(node.getFilhos(),new NodeComparator());
+			
 			
 			
 		}
+		
+		
+//		Collections.sort(c.getCidades(),new NodeComparator());
+//		for (Cidade v : c.getCidades()) {
+//			System.out.println(v.getNome()+"  "+v.getHeuristica());
+//		}
 	}
 
 }
