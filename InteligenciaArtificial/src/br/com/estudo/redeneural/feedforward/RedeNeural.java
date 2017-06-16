@@ -1,5 +1,6 @@
 package br.com.estudo.redeneural.feedforward;
 
+import br.com.estudo.redeneural.base.Neuronio;
 import br.com.estudo.redeneural.funcaoativacao.FuncaoAtivacao;
 import br.com.estudo.redeneural.funcaoativacao.FuncaoLinear;
 import br.com.estudo.redeneural.funcaoativacao.FuncaoTangenteHiperbolica;
@@ -97,4 +98,6 @@ public class RedeNeural {
 		return Neuronio.funcaoDeAtivacaoSoftmax(yS);
 	}
 
+	
+	
 }

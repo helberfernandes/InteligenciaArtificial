@@ -1,5 +1,7 @@
 package br.com.estudo.redeneural.backpropagation;
 
+import br.com.estudo.redeneural.base.Neuronio;
+
 public class RedeNeural {
 	private int numInput;// numero de entradas
 	private int numHidden;// neuronios da camada oculta
@@ -11,8 +13,8 @@ public class RedeNeural {
 	private double[] oGrads; // Output gradients for back-propagation.
 	private double[] hGrads; // Hidden gradients for back-propagation.
 	
-	double[] yO = new double[numHidden];//saida da camada oculta
-	double[] yS = new double[numOutput]; // camada de saida
+	double[] yO;//saida da camada oculta
+	double[] yS; // camada de saida
 
 	/**
 	 * Rede Neural FeeForward
@@ -29,7 +31,12 @@ public class RedeNeural {
 		this.numInput = numInput;
 		this.numHidden = numHidden;
 		this.numOutput = numOutput;
-
+		yO = new double[numHidden];
+		yS = new double[numOutput];
+		
+		oGrads = new double[numHidden];
+		hGrads = new double[numOutput];
+		
 		oculto = new Neuronio[numHidden];
 		inicializaCamada(oculto, numHidden, numInput);
 
@@ -164,12 +171,12 @@ public class RedeNeural {
 	public double[] classifica(double[] x) {
 		
 
-		for (int j = 0; j < numHidden; ++j) {
-			yO[j] = oculto[j].classificar(x, true);
+		for (int j = 0; j < numHidden; ++j) {			
+			yO[j] = oculto[j].classificar(x);
 		}
 
 		for (int j = 0; j < numOutput; ++j) {
-			yS[j] = saida[j].classificar(yO, false);
+			yS[j] = saida[j].classificar(yO);
 		}
 		return Neuronio.funcaoDeAtivacaoSoftmax(yS);
 	}

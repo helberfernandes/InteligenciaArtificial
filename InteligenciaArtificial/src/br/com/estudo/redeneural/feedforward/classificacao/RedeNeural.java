@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import br.com.estudo.redeneural.base.Neuronio;
 import br.com.estudo.redeneural.funcaoaprendizado.Backpropagation;
-import br.com.estudo.redeneural.funcaoativacao.FuncaoAtivacao;
 import br.com.estudo.redeneural.funcaoativacao.FuncaoBipolar;
-import br.com.estudo.redeneural.funcaoativacao.FuncaoLinear;
-import br.com.estudo.redeneural.funcaoativacao.FuncaoSigmoid;
+import br.com.estudo.redeneural.funcaoativacao.FuncaoLogistica;
 import br.com.estudo.redeneural.funcaoativacao.FuncaoTangenteHiperbolica;
 
 public class RedeNeural {
 	private int numInput;// numero de entradas
 	private int numHidden;// neuronios da camadas oculta
 	private int numOutput;// neuronios da camadas de saida
-	private static final double taxaAprendizado = 0.7;
+	private static final double taxaAprendizado = 0.05;
 	private static final double maxEpocas = 900000;
 
 	private Camada oculta;
@@ -37,90 +36,117 @@ public class RedeNeural {
 		this.numHidden = numHidden;
 		this.numOutput = numOutput;
 
-		oculta = new Camada(numInput, numHidden, taxaAprendizado, new FuncaoTangenteHiperbolica(), new Backpropagation());
-		saida = new Camada(numHidden, numOutput, taxaAprendizado, new FuncaoBipolar(), new Backpropagation());
+		oculta = new Camada(numInput, numHidden, taxaAprendizado, new FuncaoLogistica(),
+				new Backpropagation(taxaAprendizado));
+		saida = new Camada(numHidden, numOutput, taxaAprendizado, new FuncaoBipolar(),
+				new Backpropagation(taxaAprendizado));
+
+//		double[][] w = { { 0.15, 0.2 }, // neuronio 1
+//				{ 0.25, 0.3 } // neuronio 2 o mesmo se aplica em baixo
+//		};
+//
+//		oculta.setPesos(w);
+//		for (Neuronio n : oculta.getNeuronios()) {
+//			n.setBias(0.35);
+//		}
+//
+//		double[][] w2 = { { 0.4, 0.45 }, { 0.5, 0.55 } };
+//
+//		saida.setPesos(w2);
+//		for (Neuronio n : saida.getNeuronios()) {
+//			n.setBias(0.6);
+//		}
+
 		oculta.setProxima(saida);
 
 	}
 
-	public double[] treinar(double[][] x) {
-		boolean erro = false;
+	public double[] treinar(double[][] dadosDeTreinamento) {
+
 		double[] yS = null;
-		for (int y = 0; y < maxEpocas; y++) {
-			for (int j = 0; j < x.length; j++) {
-				yS = oculta.classifica(x[j]);
-			}
-			
-//			for (int i = 0; i < x.length; i++) {
-//				for (int a = 0; a < yS.length; a++) {
-//					if (yS[a] != x[i][numInput]) {
-//						erro = true;
-//					}
-//				}
-//			}
+		// verificando se o treinamento deu certo, ou seja se a saida e a mesma
+		// esperada
+		boolean erro = false;
+		double desejado;
+		int epoca = 0;
+		while (epoca <= 1) {
 
-		//	if (erro) {
-				int i = 0;
+			for (int a = 0; a < dadosDeTreinamento.length; a++) {
 
-				
-				List<Neuronio> neuronios = new ArrayList<Neuronio>();
-				for (Neuronio neuronio : saida.getNeuronios()) {
-					//System.out.println("Desejado "+x[i][numInput]);
-//					try {
-//						Thread.sleep(500);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-					neuronio.calcError(x[i][numInput]);
-					neuronio.aprender(taxaAprendizado);
-					neuronios.add(neuronio);
-					
-					i++;
-				}
-				
-				 saida.setNeuronios(neuronios);
-				
-				
-				
+				yS = oculta.classifica(Arrays.copyOf(dadosDeTreinamento[a], numInput));
+
+				// cada amostra ja vem com o valor esperado posicionado no fim
+				// do
+				// vetor
+				desejado = (int) dadosDeTreinamento[a][numInput];
+
 				
 
-				i = 0;
-				for (Neuronio neuronio : oculta.getNeuronios()) {
-
-					/**
-					 * Para calcular o erro da camada oculta, devo pegar o delta
-					 * da camada proxima que no caso deste problema como temos
-			bradesc		 * apenas tres camadas, entrada,oculto e saida, é a camada
-					 * de saida. O peso e o peso que corresponde a o neuronio
-					 * associado na entrada a ele *
-					 */
-					for (Neuronio n : oculta.getProxima().getNeuronios()) {
-						//System.out.println("peso "+n.getTreino().getErroDelta());
-						
-//						try {
-//							Thread.sleep(500);
-//						} catch (InterruptedException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-						neuronio.soma(n.getTreino().getErroDelta(), n.getW()[i]);
+				for (int i = 0; i < numOutput; i++) {					
+					if (yS[i] != desejado) {
+						erro = true;
 					}
-					neuronio.calcError();
-					neuronio.aprender(taxaAprendizado);
-					i++;
-
 				}
-				
-//				for (Neuronio neuronio : oculta.getNeuronios()) {
-//					
-//					System.out.println("peso "+neuronio.getTreino().getErroDelta());
-//				
-//				}
-				erro = false;
-			//}
-		}
+				if (erro) {
+					/*
+					 * Calculando o erro na camada de saida
+					 */
+					for (int i = 0; i < saida.getNeuronios().size(); i++) {
+						saida.getNeuronios().get(i).getTreino().calcError(yS[i], desejado);
+					}
 
+					/*
+					 * atualizando o peso da camada de saida. Para isso basta
+					 * miltiplicar a taxa de aprendizado pela saida do neuronio
+					 * respectivo ao peso multiplicando também oerrodelta
+					 */
+					for (int i = 0; i < saida.getNeuronios().size(); i++) {
+						
+						for (int j = 0; j < saida.getNeuronios().get(i).getW().length; ++j) {
+						saida.getNeuronios().get(i).getTreino().deltaWheigts(j,
+								oculta.getNeuronios().get(i).getSaida());
+						}
+					}
+
+					/*
+					 * Calculadno o erro na camada oculta para isso deve, somar
+					 * o produto da multiplicacao dos pesos desta camada com o
+					 * delta da camada de saida multiplicado pela derivada da
+					 * funcao de ativacao desta camda oculta
+					 */
+					List<Double> pesos = new ArrayList<>();
+					List<Double> delta = new ArrayList<>();
+					for (int n = 0; n < oculta.getNeuronios().size(); n++) {
+						for (int ns = 0; ns < saida.getNeuronios().size(); ns++) {
+							for (int i = 0; i < saida.getNeuronios().get(ns).getW().length; i++) {
+								pesos.add(saida.getNeuronios().get(ns).getW()[i]);
+							}
+							delta.add(saida.getNeuronios().get(ns).getTreino().getErroDelta());
+						}
+						oculta.getNeuronios().get(n).getTreino().calcErrorOculto(pesos, delta, oculta.getNeuronios().get(n).getSaida());
+					}
+
+					// calculando o delta dos pesos da camada oculta
+					for (int i = 0; i < oculta.getNeuronios().size(); i++) {
+						for (int j = 0; j < oculta.getNeuronios().get(i).getW().length; ++j) {
+						oculta.getNeuronios().get(i).getTreino().deltaWheigts(j,
+								oculta.getNeuronios().get(i).getX()[i]);
+						}
+					}
+
+					for (int i = 0; i < saida.getNeuronios().size(); i++) {
+						saida.getNeuronios().get(i).updateWheigts();
+					}
+
+					for (int i = 0; i < oculta.getNeuronios().size(); i++) {
+						oculta.getNeuronios().get(i).updateWheigts();
+					}
+					
+					erro=false;
+				}
+			}
+			epoca++;
+		}
 		return yS;
 	}
 

@@ -1,17 +1,18 @@
 package br.com.estudo.redeneural.feedforward.classificacao;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import br.com.estudo.redeneural.base.Neuronio;
 import br.com.estudo.redeneural.funcaoaprendizado.Treino;
 import br.com.estudo.redeneural.funcaoativacao.FuncaoAtivacao;
-import br.com.estudo.redeneural.funcaoativacao.FuncaoBipolar;
 
 public class Camada {
 	private int numInput;// numero de entradas
 	private int numNeuronios;// neuronios da camada
 	private List<Neuronio> neuronios = new ArrayList<Neuronio>();
+	private Treino treino;
+
 	/*
 	 * todas as saidas da camada, para cada neuronio pode ser acessado a saida
 	 * individual no proprio neuronio
@@ -22,7 +23,7 @@ public class Camada {
 	 * de saida
 	 */
 	private Camada proxima = null;
-	private Treino treino;
+
 	private final double taxaAprendizado;
 
 	/**
@@ -40,6 +41,7 @@ public class Camada {
 		this.numInput = numInput;
 		this.numNeuronios = numNeuronios;
 		this.taxaAprendizado = taxaAprendizado;
+		this.treino = treino;
 		/*
 		 * Inicializando cada camada, e interessante notar que para cada camada
 		 * pode ser determinado a funcao de ativacao
@@ -77,9 +79,16 @@ public class Camada {
 	 * @param x
 	 *            Percepcoes do agente enviadas para a rede neural
 	 * 
-	 * @return um valor de ativacao
+	 * @return um valor de ativacao da camada de saia
 	 */
 	public double[] classifica(double[] x) {
+
+		System.out.println("------------------------Pesos oculto ------------------");
+		for (int i = 0; i < numNeuronios; i++) {
+			for (int y = 0; y < neuronios.get(i).getW().length; y++) {
+				System.out.println(neuronios.get(i).getW()[y]);
+			}
+		}
 
 		for (int i = 0; i < numNeuronios; i++) {
 			ySaida[i] = neuronios.get(i).classificar(x);
@@ -91,28 +100,13 @@ public class Camada {
 		 * contrario serao os valores dos neuronios da camada atual.
 		 */
 		if (proxima != null) {
-
-//			for(int i=0;i<ySaida.length;i++){
-//				System.out.println("Saida "+ySaida[i]);
-//			}
 			return proxima.classifica(ySaida);
 		}
 		return ySaida;
 	}
 
-	// public double[] treino(double[] x, double[] desejado) {
-	// // double[] yS contem a saida de cada neuronio de saida
-	//
-	// return classifica(x);
-	//
-	// }
-
 	public void update(Neuronio neuronio) {
 		neuronios.add(neuronios.indexOf(neuronio), neuronio);
-	}
-
-	public void setTreino(Treino treino) {
-		this.treino = treino;
 	}
 
 	public boolean isOutput() {
@@ -133,6 +127,22 @@ public class Camada {
 
 	public void setNeuronios(List<Neuronio> neuronios) {
 		this.neuronios = neuronios;
+	}
+
+	public Treino getTreino() {
+		return treino;
+	}
+
+	public void setTreino(Treino treino) {
+		this.treino = treino;
+	}
+
+	public void setPesos(double[][] w) {
+		for (int i = 0; i < numNeuronios; i++) {
+			for (int x = 0; x < numInput; x++) {
+				neuronios.get(i).setW(x, w[i][x]);
+			}
+		}
 	}
 
 }

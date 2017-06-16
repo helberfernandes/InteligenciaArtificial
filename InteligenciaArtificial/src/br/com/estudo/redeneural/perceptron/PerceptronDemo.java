@@ -5,14 +5,14 @@ import java.util.Arrays;
 public class PerceptronDemo {
 
 	public static void main(String[] args) {
-		double AMOSTRAS[][] = { 
-				{ 1, -1, 1, 1, 1 }, // Cao
-				{ 1, 1, 1, 1, 1 }, // Gato
-				{ 1, -1, -1, 1, 1 }, // Cavalo
-				{ -1, 1, -1, 1, -1 }, // Galinha
-				{ 1, -1, 1, -1, -1 }, // Avestruz
-				{ -1, -1, -1, 1, -1 }, // Homem
-
+		//a amostra ja tras o valor esperado na ultima posicao
+		double AMOSTRAS[][] = {
+				{  1,  1,  1,  1,  1 }, // Gato
+				{  1, -1,  1,  1,  1 }, // Cao				
+				{  1, -1, -1,  1,  1 }, // Cavalo
+				{ -1,  1, -1,  1, -1 }, // Galinha
+				{  1, -1,  1, -1, -1 }, // Avestruz
+				{ -1, -1, -1,  1, -1 }, // Homem
 		};
 		System.out.println("Apostras");
 		mostrarDados(AMOSTRAS);
@@ -26,7 +26,7 @@ public class PerceptronDemo {
 
 		System.out.println("classificação");
 
-		double[] entrada = { 1, -1, 1, -1 };
+		double[] entrada = { 1, 1, 1, 1 };
 		System.out.println(p.classificar(entrada) == 1d ? "Quadrupede" : "Bipede");
 
 		System.out.println("----------------------------------------------------");

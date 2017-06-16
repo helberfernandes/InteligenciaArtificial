@@ -1,43 +1,32 @@
 package br.com.estudo.redeneural.feedforward.classificacao;
 
-public class FeedForward {
+public class BackPropagation {
 
-	public static double XOR_INPUT[][] = {
-			{0.0,0.0,-1},
-			{1.0,0.0,1},
-			{0.0,1.0,1},
-			{1.0,1.0,-1}
+	static double AMOSTRAS[][] = {
+			{  1,   1,  -1}, // Gato
+			{ -1,   1,   1}, // Cao				
+			{  1,  -1,   1}, // Cavalo
+			{ -1,  -1,  -1}, // Galinha
+			
 	};
 	
 	
-	public static double XOR_IDEAL[][] = {
-			{0.0},
-			{1.0},
-			{1.0},
-			{0.0}
-	};
+
+	public static double INPUT_DATA[] = { -1,   1 };
+
+	
 
 	public static void main(String[] args) {
 
 		final int QTD_ENTRADAS = 2;
-		final int QTD_NEURONIOS_OCULTOS = 3;
-		final int QTD_NEURONIOS_SAIDA =4;
-
+		final int QTD_NEURONIOS_OCULTOS = 2;
+		final int QTD_NEURONIOS_SAIDA = 1;
 		RedeNeural rna = new RedeNeural(QTD_ENTRADAS, QTD_NEURONIOS_OCULTOS, QTD_NEURONIOS_SAIDA);
 
-		mostrarDados(XOR_INPUT);
+		double[] yS = rna.treinar(AMOSTRAS);
+		// showVector(yS, 1, 4, true);
+		yS = rna.classifica(INPUT_DATA);
 
-		double[] yS = rna.treinar(XOR_INPUT);
-////
-////		
-		double[] entrada = {1.0, 0.0};
-//		
-////		
-		//showVector(yS, 1, 4, true);
-//		
-//		
-		 yS = rna.classifica(entrada);
-		 
 		 showVector(yS, 1, 4, true);
 	}
 
@@ -50,7 +39,7 @@ public class FeedForward {
 		if (newLine == true)
 			System.out.println(" ");
 	}
-	
+
 	private static void mostrarDados(double dados[][]) {
 		for (int x = 0; x < dados.length; x++) {
 			System.out.print("{");

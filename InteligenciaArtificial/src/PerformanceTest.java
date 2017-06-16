@@ -34,8 +34,8 @@ public class PerformanceTest {
 //     	 System.out.println();
 //      }
    
-	   
-	
+	   double n =0.15*0.05+0.2*0.1+0.35*1;
+	System.out.println(1/(1+Math.exp(-n)));
     
    }
   

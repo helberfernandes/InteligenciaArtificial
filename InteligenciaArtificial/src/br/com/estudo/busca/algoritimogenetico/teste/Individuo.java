@@ -11,13 +11,18 @@ import br.com.estudo.util.EstudoUtil;
 public class Individuo {
 	private char[] cromossomo;
 	private int fitness = -1;
-	private String alfa = "abcdefghijlmnopqrstuvxzkyw ";
+	//private String alfa = "abcdefghijlmnopqrstuvxzkyw ABCDEFGHIJLMNOPQRSTUVXZKYW";
+	private String alfa = "abcdefghijlmnopqrstuvxzkyw ABCDEFGHIJLMNOPQRSTUVXZKYW";
 
 	public Individuo(char[] cromossomo) {
 		super();
 		this.cromossomo = cromossomo;
 	}
-
+	/**
+	 * Cria um cromossomo baseado no tamanho do cromossomo, este cromossomo
+	 * e composto pelos characteres de alpa de forma randomica
+	 * @param tamanhoCromossomo geralmente e o tamanho da solucao
+	 */
 	public Individuo(int tamanhoCromossomo) {
 		this.cromossomo = new char[tamanhoCromossomo];
 		for (int gene = 0; gene < tamanhoCromossomo; gene++) {

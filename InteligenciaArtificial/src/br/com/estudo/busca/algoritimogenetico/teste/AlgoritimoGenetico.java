@@ -52,7 +52,12 @@ public class AlgoritimoGenetico {
 		individuo.setFitness(correctGenes);
 		return correctGenes;
 	}
-
+	/**
+	 * Calcula a fitness de toda a populacao, inicialmente se calcula a fitness de cada
+	 * individuo, e posteriormente soma esta fitness com o restante da populacao, uma vez calculado
+	 * adiciona na fitness total da populacao.
+	 * @param populacao
+	 */
 	public void evalPopulacao(Populacao populacao) {
 		double populacaoFitness = 0;
 		for (Individuo individuo : populacao.getPopulacao()) {
@@ -60,7 +65,13 @@ public class AlgoritimoGenetico {
 		}
 		populacao.setPopulacaoFitness(populacaoFitness);
 	}
-
+	
+	/**
+	 * A solucao termina somente quando e encontrado algum individuao igual ao
+	 * objetivo.
+	 * @param populacao
+	 * @return
+	 */
 	public boolean isTerminationConditionMet(Populacao populacao) {
 		for (Individuo individuo : populacao.getPopulacao()) {
 			

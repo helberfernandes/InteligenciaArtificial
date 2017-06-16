@@ -1,5 +1,7 @@
 package br.com.estudo.redeneural.funcaoativacao;
 
+import br.com.estudo.redeneural.exception.NeuralException;
+
 public class FuncaoSigmoid implements FuncaoAtivacao {
 
 	@Override
@@ -12,4 +14,8 @@ public class FuncaoSigmoid implements FuncaoAtivacao {
 		return n*(1.0-n);
 	}
 
+	@Override
+	public double[] funcaoAtivacao(double[] oSums) {
+		throw new NeuralException("Funcao nao implementada");
+	}
 }

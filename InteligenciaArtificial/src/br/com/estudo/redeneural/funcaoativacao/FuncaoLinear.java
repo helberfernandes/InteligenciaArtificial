@@ -14,4 +14,9 @@ public class FuncaoLinear implements FuncaoAtivacao {
 		throw new NeuralException("Nao existe derivada");
 	}
 
+	
+	@Override
+	public double[] funcaoAtivacao(double[] oSums) {
+		throw new NeuralException("Funcao nao implementada");
+	}
 }

@@ -27,6 +27,8 @@ public class FeedForward {
              0.25, 0.26
 
          };
+         
+         
          rna.setPesos(weights);
          
          double[] xValues = new double[] { 1.0, 2.0, 3.0 };

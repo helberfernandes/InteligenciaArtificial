@@ -1,4 +1,4 @@
-package br.com.estudo.redeneural.feedforward.classificacao;
+package br.com.estudo.redeneural.base;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -17,7 +17,7 @@ public class Neuronio {
 	private double[] x;// entradas
 	private double[] w;// pesos
 	private int numEntradas;
-	private double bias = -1;
+	private double bias = 0.35;
 	private double saida = 0;
 	private FuncaoAtivacao funcaoAtivacao;
 	private Treino treino;
@@ -58,11 +58,26 @@ public class Neuronio {
 	public Neuronio(int numEntradas, Treino treino) {
 		this(numEntradas, treino, new FuncaoSigmoid());
 	}
+	
+	public Neuronio(int numEntradas) {
+		this(numEntradas, null, new FuncaoSigmoid());
+	}
+	
+	
+	public Neuronio(int numEntradas, FuncaoAtivacao funcaoAtivacao) {
+		super();
+		this.numEntradas = numEntradas;
+		this.funcaoAtivacao = funcaoAtivacao;
+		x = new double[numEntradas];
+		w = new double[numEntradas];
+		
+		inicializaPesos();
+	}
 
 	private void inicializaPesos() {
 		Random rn = new Random();
 		for (int i = 0; i < numEntradas; i++) {
-			w[i] =rn.nextInt(10-2+1)+2;
+			w[i] =0;//rn.nextInt(10-2+1)+2
 		}
 	}
 	
@@ -81,14 +96,12 @@ public class Neuronio {
 	public double classificar(double[] x) {
 		this.x=x;
 		
-		double soma = 0.0;
+		double net = 0.0;
 		for (int i = 0; i < numEntradas; i++) {
-			soma += this.x[i] * w[i];
+			net += this.x[i] * w[i];
 		}
-		soma += bias;
-		
-		saida = this.funcaoAtivacao.funcaoAtivacao(soma);
-		return saida;
+		net += bias;
+		return saida = this.funcaoAtivacao.funcaoAtivacao(net);
 	}
 
 	/**
@@ -155,16 +168,25 @@ public class Neuronio {
 		}
 	}
 
-	/**
-	 * 
-	 * @param delta
-	 *            da camada anterior
-	 * @param peso
-	 *            da camada anterior
-	 */
-	public void calcError() {
-		treino.calcErrorOculto(getSaida(), soma);
+//	/**
+//	 * 
+//	 * @param delta
+//	 *            da camada anterior
+//	 * @param peso
+//	 *            da camada anterior
+//	 */
+//	public void calcError() {
+//		treino.calcErrorOculto(getSaida(), soma);
+//	}
+	
+	public void updateWheigts(){
+		for (int j = 0; j < getW().length; ++j) {
+			setW(j, treino.updateWheigts(j, getW()[j]));
+		}
 	}
+	
+	
+
 	
 	public void soma(double erro, double peso) {
 		soma+=erro*peso;
@@ -208,6 +230,8 @@ public class Neuronio {
 	public double getBias() {
 		return bias;
 	}
+	
+	
 
 	public void setW(double[] w) {
 		this.w = w;
